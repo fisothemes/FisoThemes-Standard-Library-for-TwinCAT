@@ -45,7 +45,7 @@ FsI_Error
 ```ST
 VAR
     sValue : STRING;
-	fbImmutStr : FsFB_ImmutableString('I love cats!');
+    fbImmutStr : FsFB_ImmutableString('I love cats!');
     DogPosition : FsT_Pos;
     ipErr : FsI_Error;
     ErrorMsg : FsT_Str;
@@ -71,7 +71,7 @@ ELSE
 **Declarations:** 
 ```ST
 VAR
-	SendBuffer, RecvBuffer : FsT_Str;
+    SendBuffer, RecvBuffer : FsT_Str;
     fbTcpClient : FsFB_TcpClient;
     ipErr : FsI_Error;
     ErrorCode : FsT_ErrCode;
@@ -85,8 +85,8 @@ IF bConnect THEN
 	bConnect := NOT fbTcpClient.Connect('127.0.0.1', 8008, e => ipErr);
     IF ipErr <> 0 THEN
         ErrorCode := ipErr.Code;
-        END_IF
 	END_IF
+    END_IF
 	
 IF bDisconnect THEN
 	bDisconnect := NOT fbTcpClient.Disconnect(e => ipErr);
