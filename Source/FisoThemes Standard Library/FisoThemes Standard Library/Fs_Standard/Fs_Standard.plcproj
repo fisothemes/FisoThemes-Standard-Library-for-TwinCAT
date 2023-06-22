@@ -1,0 +1,137 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{c496d9cb-e81a-46e3-8a9b-32549a2af4d0}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>Fs_Standard</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{fb136af2-fdf7-4544-b947-5990a2766b75}</Application>
+    <TypeSystem>{ef96ab6a-b67e-4bae-85de-e426bf30e8f2}</TypeSystem>
+    <Implicit_Task_Info>{27b4ea9d-849d-4d71-9e67-426684c6c41d}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{a2f0b2b0-70dc-4310-8b9a-bbda2ff9d7f6}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{0073d57f-3ab4-4be7-9193-cc8c2c4cd142}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{d6e4aa14-4a01-4f20-b9ef-ea459d7355e0}</LibraryReferences>
+    <Company>FisoThemes</Company>
+    <Released>false</Released>
+    <Title>FisoThemes Standard Library</Title>
+    <DefaultNamespace>Fs_Standard</DefaultNamespace>
+    <ProjectVersion>0.0.0.0</ProjectVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_Obj.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_Str.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_LStr.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\FunctionBlocks\FsFB_Object.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Interfaces\FsI_Unknown.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Interfaces\FsI_Object.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Parameters\FSParam_Core.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Core\_Playground\FsP_CorePlayground.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Project Information\F_GetCompany.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Project Information\F_GetTitle.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Project Information\F_GetVersion.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Version\Global_Version.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_Internal\_MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_TemplateFolder\_Playground\FsP_TempPlayground.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Project Information" />
+    <Folder Include="Version" />
+    <Folder Include="VISUs" />
+    <Folder Include="_Internal" />
+    <Folder Include="_TemplateFolder" />
+    <Folder Include="_TemplateFolder\DataUnitTypes" />
+    <Folder Include="_TemplateFolder\DataUnitTypes\Alias" />
+    <Folder Include="_TemplateFolder\DataUnitTypes\Enums" />
+    <Folder Include="_TemplateFolder\DataUnitTypes\Structs" />
+    <Folder Include="_TemplateFolder\FunctionBlocks" />
+    <Folder Include="_TemplateFolder\Functions" />
+    <Folder Include="_TemplateFolder\Interfaces" />
+    <Folder Include="_TemplateFolder\Globals" />
+    <Folder Include="_TemplateFolder\Parameters" />
+    <Folder Include="_TemplateFolder\_Playground" />
+    <Folder Include="_TemplateFolder\Programs" />
+    <Folder Include="Core" />
+    <Folder Include="Core\DataUnitTypes" />
+    <Folder Include="Core\DataUnitTypes\Alias" />
+    <Folder Include="Core\DataUnitTypes\Enums" />
+    <Folder Include="Core\DataUnitTypes\Structs" />
+    <Folder Include="Core\FunctionBlocks" />
+    <Folder Include="Core\Functions" />
+    <Folder Include="Core\Globals" />
+    <Folder Include="Core\Interfaces" />
+    <Folder Include="Core\Parameters" />
+    <Folder Include="Core\Programs" />
+    <Folder Include="Core\_Playground" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+  </Data>
+  <TypeList>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

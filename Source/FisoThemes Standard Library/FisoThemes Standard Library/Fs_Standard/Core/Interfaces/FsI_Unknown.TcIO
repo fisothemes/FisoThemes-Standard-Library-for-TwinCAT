@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Itf Name="FsI_Unknown" Id="{dbbc1e5a-2d78-48be-aaac-38200c76462b}">
+    <Declaration><![CDATA[// Root interface of all FS objects. 
+// Inherits __SYSTEM.IQueryInterface which is used to query an object interface/pointer for one of its interfaces.
+INTERFACE FsI_Unknown EXTENDS __SYSTEM.IQueryInterface]]></Declaration>
+  </Itf>
+</TcPlcObject>

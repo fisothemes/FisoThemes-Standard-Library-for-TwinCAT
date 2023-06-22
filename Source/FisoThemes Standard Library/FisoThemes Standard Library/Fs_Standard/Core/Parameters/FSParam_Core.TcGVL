@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <GVL Name="FSParam_Core" Id="{23f779d3-74b3-4231-a330-7fe9e566b126}" ParameterList="True">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	nFST_STR_SIZE : UXINT := 80;
+	nFST_LSTR_SIZE : UXINT := 255;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

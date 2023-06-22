@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Itf Name="FsI_Object" Id="{201a7385-47ee-481f-a692-da4578c9197f}">
+    <Declaration><![CDATA[// Interface for the base class of all classes in the FisoThemes Standard Library.
+INTERFACE FsI_Object EXTENDS FsI_Unknown]]></Declaration>
+    <Folder Name="Methods" Id="{603824c2-a15f-4b68-9f03-78f8bd8cf16c}" />
+    <Folder Name="Properties" Id="{6528398b-04f5-484f-a69c-a3efa596900f}" />
+    <Method Name="Equals" Id="{595098f3-2a9e-483a-9111-0ca4827babf1}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD Equals : BOOL
+VAR_INPUT
+	Obj : REFERENCE TO FsT_Obj;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Is" Id="{78d3b0be-7a2f-4ba2-950a-f12e5b6bcb3f}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD Is : BOOL
+VAR_INPUT
+	Obj : REFERENCE TO FsT_Obj;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="ToString" Id="{dc567948-de95-41dc-a569-aaa1494a51b5}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD ToString : FsT_LStr {error 'create FsFB_ImmutableString and change the return type to REFERENCE TO FsT_ImmutStr'}]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

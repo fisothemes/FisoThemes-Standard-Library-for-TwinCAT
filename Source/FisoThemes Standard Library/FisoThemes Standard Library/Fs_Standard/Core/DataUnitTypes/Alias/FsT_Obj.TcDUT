@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_Obj" Id="{c08d5ba7-a9aa-476f-ac39-2dd2104a265b}">
+    <Declaration><![CDATA[// Base class of all classes in the FisoThemes Standard Library.
+TYPE FsT_Obj : FsFB_Object; END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

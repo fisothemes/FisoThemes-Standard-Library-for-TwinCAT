@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsP_TempPlayground" Id="{796d70f3-f93a-4078-8454-4d482cd96b06}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM INTERNAL FsP_TempPlayground
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ObjectPlayground();]]></ST>
+    </Implementation>
+    <Method Name="TempPlayground" Id="{381660e5-032b-42a6-9ca1-c80debbb6c20}">
+      <Declaration><![CDATA[METHOD PRIVATE TempPlayground
+VAR_STAT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FsP_TempPlayground">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FsP_TempPlayground.TempPlayground">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

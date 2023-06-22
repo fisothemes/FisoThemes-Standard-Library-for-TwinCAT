@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="8e6ddbe0-2456-42a2-8b16-7085c8b833c4">MAIN</Type>
+      <From>MAIN</From>
+      <To>_MAIN</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="63733188-7efc-48a4-b035-1cb92b558b1b">FST_STR_1</Type>
+      <From>FST_Str_1</From>
+      <To>FST_LStr</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="201a7385-47ee-481f-a692-da4578c9197f">FSI_UNKOWN_1</Type>
+      <From>FsI_Unkown_1</From>
+      <To>FsI_Object</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="dbbc1e5a-2d78-48be-aaac-38200c76462b">FSI_UNKOWN</Type>
+      <From>FsI_Unkown</From>
+      <To>FsI_Unknown</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="c08d5ba7-a9aa-476f-ac39-2dd2104a265b">FST_LSTR_1</Type>
+      <From>FST_LStr_1</From>
+      <To>FsT_Obj</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="78d3b0be-7a2f-4ba2-950a-f12e5b6bcb3f">EQUALS_1</Type>
+      <From>Equals_1</From>
+      <To>Is</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="dc567948-de95-41dc-a569-aaa1494a51b5">IS_1</Type>
+      <From>Is_1</From>
+      <To>ToString</To>
+    </RenamedType>
+  </Renames>
+</Refactors>
