@@ -15,16 +15,17 @@ Welcome to the Fisothemes's Standard Library for TwinCAT! This library aims to c
 Please note that the Fisothemes's Standard Library for TwinCAT is currently under development. While it is not yet ready for full usage, I would like to provide you with a glimpse of what is planned. Here are some code snippets to give you a taste of what I have in mind:
 
 ### Base Class
- 
+
 ```
 FsFB_Object IMPLEMENTS FsI_Object
 ├── Methods
-│   ├── Equals(fbObject : REFERENCE TO FsFB_Object) -> BOOL
-│   └── ToString() -> FsT_Str
+│   ├── Equals(Obj : REFERENCE TO FsT_Obj) -> BOOL
+│   ├── Is(Obj : REFERENCE TO FsT_Obj) -> BOOL
+│   └── ToString() -> FsT_LStr
 └── Properties
-    ├── Name : FsT_Str
+    ├── InstanceName : FsT_Str
     ├── TypeName : FsT_Str
-    ├── Path : FsT_Str
+    ├── InstacePath : FsT_Str
     ├── Address : FsT_Ptr
     ├── Size : FsT_Size
     └── MemoryArea : FsT_MemArea
@@ -35,8 +36,8 @@ FsFB_Object IMPLEMENTS FsI_Object
 ```
 FsI_Error
 └── Properties
-    ├── Message : FsT_Str
-    ├── Source : FsT_Str
+    ├── Message : FsT_ErrMsg
+    ├── Source : FsT_ErrSrc
     └── Code : FsT_ErrCode
 ```
 
@@ -44,19 +45,19 @@ FsI_Error
 **Declarations:** 
 ```ST
 VAR
-    sValue : STRING;
+    sValue : STRING(255);
     fbImmutStr : FsFB_ImmutableString('I love cats!');
-    DogPosition : FsT_Pos;
+    DogPos : FsT_Pos;
     ipErr : FsI_Error;
-    ErrorMsg : FsT_Str;
-    ErrorSrc : FsT_Str;
+    ErrorMsg : FsT_ErrMsg;
+    ErrorSrc : FsT_ErrSrc;
 END_VAR
 ```
 
 **Implementation:**
 ```ST
 sValue := fbImmutStr
-    .Search('Dogs', 0, Position => DogPositon, e => ipErr)
+    .Search('Dogs', 0, Pos => DogPos, e => ipErr)
     .ToString();
 IF ipErr <> 0 THEN
     ErrorMsg := ipErr.Message; // OUTPUT: 'Value not found.'
