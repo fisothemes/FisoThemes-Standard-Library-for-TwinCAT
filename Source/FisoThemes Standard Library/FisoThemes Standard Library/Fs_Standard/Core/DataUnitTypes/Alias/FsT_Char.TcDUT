@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_Char" Id="{9e593f4d-29d4-4a60-9d59-2066faeae2b1}">
+    <Declaration><![CDATA[// Single character string.
+TYPE FsT_Char : STRING(1); END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

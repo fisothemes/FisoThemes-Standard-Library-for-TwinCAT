@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsE_Accessor" Id="{b5ffcac0-d12f-4d18-812f-f8c79582f1f8}">
+    <Declaration><![CDATA[// An enum that can be used to represent getters and setters.
+{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE FsE_Accessor :
+(
+	_ := 0,
+	Get,
+	Set
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

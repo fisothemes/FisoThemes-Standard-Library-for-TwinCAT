@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_MemArea" Id="{8426e294-5de0-4837-a3bb-2a77f82ed5de}">
+    <Declaration><![CDATA[TYPE FsT_MemArea : Tc2_System.E_TcMemoryArea; END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

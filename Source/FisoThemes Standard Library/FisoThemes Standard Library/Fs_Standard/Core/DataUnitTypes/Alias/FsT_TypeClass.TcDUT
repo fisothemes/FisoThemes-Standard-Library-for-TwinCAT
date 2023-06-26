@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_TypeClass" Id="{fd2b70ec-57ea-4e44-912e-67ab95a36604}">
+    <Declaration><![CDATA[TYPE FsT_TypeClass : __SYSTEM.TYPE_CLASS; END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

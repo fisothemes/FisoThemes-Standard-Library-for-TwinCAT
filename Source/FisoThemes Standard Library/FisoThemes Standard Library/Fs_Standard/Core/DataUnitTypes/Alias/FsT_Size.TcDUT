@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_Size" Id="{4b57b667-d024-4dac-8788-462811423595}">
+    <Declaration><![CDATA[TYPE FsT_Size : UXINT; END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

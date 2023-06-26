@@ -1,26 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <Itf Name="FsI_Object" Id="{201a7385-47ee-481f-a692-da4578c9197f}">
-    <Declaration><![CDATA[// Interface for the base class of all classes in the FisoThemes Standard Library.
+    <Declaration><![CDATA[// Generic interface that defines the basic properties and methods of an object in the FisoThemes Standard Library.
 INTERFACE FsI_Object EXTENDS FsI_Unknown]]></Declaration>
     <Folder Name="Methods" Id="{603824c2-a15f-4b68-9f03-78f8bd8cf16c}" />
     <Folder Name="Properties" Id="{6528398b-04f5-484f-a69c-a3efa596900f}" />
-    <Method Name="Equals" Id="{595098f3-2a9e-483a-9111-0ca4827babf1}" FolderPath="Methods\">
-      <Declaration><![CDATA[METHOD Equals : BOOL
-VAR_INPUT
-	Obj : REFERENCE TO FsT_Obj;
-END_VAR
-]]></Declaration>
-    </Method>
+    <Property Name="Address" Id="{4ac6af2f-263b-4789-aa5c-4534d7e3601d}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Pointer to the object in memory.
+PROPERTY Address : FsT_Ptr]]></Declaration>
+      <Get Name="Get" Id="{fb480715-7e3a-4ba1-b3a2-ce287c463598}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="InstanceName" Id="{4875e02c-5e8e-42e1-a549-5c7302c2ef0d}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Represents the name of the object.
+PROPERTY InstanceName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{91a6c7c7-bfac-4b20-b55b-66bc5fd48fe8}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="InstancePath" Id="{ad2ab2a4-30f3-4204-901b-e2de4905e992}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Represents the path to the object.
+PROPERTY InstancePath : FsT_LStr]]></Declaration>
+      <Get Name="Get" Id="{ee4fdb97-c081-484e-a6ea-b8e30569360a}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Is" Id="{78d3b0be-7a2f-4ba2-950a-f12e5b6bcb3f}" FolderPath="Methods\">
-      <Declaration><![CDATA[METHOD Is : BOOL
+      <Declaration><![CDATA[// Checks if the current object is the same as (reference-wise) object as the input object.
+METHOD Is : BOOL
 VAR_INPUT
-	Obj : REFERENCE TO FsT_Obj;
-END_VAR
-]]></Declaration>
+	ipObject : FsI_Object;
+END_VAR]]></Declaration>
     </Method>
+    <Property Name="MemoryArea" Id="{547eaac8-abd9-4938-856a-d7d56950eb21}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Memory area that the object is allocated in.
+PROPERTY MemoryArea : FsT_MemArea]]></Declaration>
+      <Get Name="Get" Id="{091cd4dc-96c4-45e4-bcf6-ba1f8a1218fb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Size" Id="{65368e23-d7cc-4f00-9614-fa13d1015bcf}" FolderPath="Properties\">
+      <Declaration><![CDATA[//  Size of the object in bytes.
+PROPERTY Size : FsT_Size]]></Declaration>
+      <Get Name="Get" Id="{745bf69d-9e54-4f66-92c5-6afce78353b6}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="ToString" Id="{dc567948-de95-41dc-a569-aaa1494a51b5}" FolderPath="Methods\">
-      <Declaration><![CDATA[METHOD ToString : FsT_LStr {error 'create FsFB_ImmutableString and change the return type to REFERENCE TO FsT_ImmutStr'}]]></Declaration>
+      <Declaration><![CDATA[// Converts this object to a string representation.
+METHOD ToString : FsT_LStr]]></Declaration>
     </Method>
+    <Property Name="TypeName" Id="{ffb197d2-6d6a-47ea-889c-6981af5783f6}" FolderPath="Properties\">
+      <Declaration><![CDATA[// A string that represents the type of the object.
+PROPERTY TypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{3fd8aecb-d27d-41c3-885f-c5c5209402fa}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
   </Itf>
 </TcPlcObject>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_Accessor" Id="{fcfc1be2-dec2-4f16-b7b5-e433e5688cd7}">
+    <Declaration><![CDATA[// An enum that can be used to represent getters and setters.
+TYPE FsT_Accessor : FsE_Accessor; END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

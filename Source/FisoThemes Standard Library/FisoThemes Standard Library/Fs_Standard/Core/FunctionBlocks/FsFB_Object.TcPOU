@@ -3,16 +3,110 @@
   <POU Name="FsFB_Object" Id="{b9a7d797-4e3c-4bd7-a9f4-98928c915162}" SpecialFunc="None">
     <Declaration><![CDATA[// Base class of all classes in the FisoThemes Standard Library.
 {attribute 'enable_dynamic_creation'}
+{attribute 'reflection'}
 {attribute 'no_assign'}
 {attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
 FUNCTION_BLOCK FsFB_Object IMPLEMENTS FsI_Object
-VAR
+VAR CONSTANT
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    _p_a_t_h_ : FsT_LStr := '';
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Folder Name="Methods" Id="{e0c51f80-3b85-4e15-968a-5fe33c64a10d}" />
-    <Folder Name="Properties" Id="{4cfd352d-4987-4e1b-8453-bbe171753889}" />
+    <Folder Name="Methods" Id="{9e68c5d1-f194-4f3e-b6b3-7681e0f201d7}" />
+    <Folder Name="Properties" Id="{6e68efcf-a06b-4741-a90c-39cba0c68559}" />
+    <Method Name="_InstanceName" Id="{ee0e5d50-4624-447a-b787-3fae3b1a51d1}" FolderPath="Methods\">
+      <Declaration><![CDATA[// Private local variable for instance name
+METHOD PRIVATE _InstanceName : FsT_Str
+VAR_INPUT
+	Accessor : FsT_Accessor;
+	Data : FsT_Str;
+END_VAR
+VAR_INST
+	Store : FsT_Str;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE Accessor OF
+	FsT_Accessor.Set:
+		_InstanceName := Store := Data;
+	FsT_Accessor.Get:
+		_InstanceName := Store;
+	END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_InstancePath" Id="{5e518097-12b8-4fe0-84c6-c04bfa42b096}" FolderPath="Methods\">
+      <Declaration><![CDATA[// Private local variable for instance path
+METHOD PRIVATE _InstancePath : FsT_LStr
+VAR_INPUT
+	Accessor : FsT_Accessor;
+	Data : FsT_LStr;
+END_VAR
+VAR_INST
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+	Store : FsT_LStr;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE Accessor OF
+	FsT_Accessor.Set:
+		_InstancePath := Store := Data;
+	FsT_Accessor.Get:
+		_InstancePath := Store;
+	END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_Size" Id="{9947d38c-b13b-4f37-bc4a-f1fd93a541f7}" FolderPath="Methods\">
+      <Declaration><![CDATA[// Private local variable for object size
+METHOD PRIVATE _Size : FsT_Size
+VAR_INPUT
+	Accessor : FsT_Accessor;
+	Data : FsT_Size;
+END_VAR
+VAR_INST
+	Store : FsT_Size;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE Accessor OF
+	FsT_Accessor.Set:
+		_Size := Store := Data;
+	FsT_Accessor.Get:
+		_Size := Store;
+	END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_TypeName" Id="{51bbe2bb-5cfe-4d45-b3cb-da827d8fdf88}" FolderPath="Methods\">
+      <Declaration><![CDATA[// Private local variable for type name
+METHOD PRIVATE _TypeName : FsT_Str
+VAR_INPUT
+	Accessor : FsT_Accessor;
+	Data : FsT_Str;
+END_VAR
+VAR_INST
+	Store : FsT_Str;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE Accessor OF
+	FsT_Accessor.Set:
+		_TypeName := Store := Data;
+	FsT_Accessor.Get:
+		_TypeName := Store;
+	END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{7007c1fb-a7ab-4291-aa3a-d0ddd5d42f4e}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Pointer to the object in memory.
+PROPERTY FINAL Address : FsT_Ptr]]></Declaration>
+      <Get Name="Get" Id="{bd783e5b-6e26-4874-9513-4747948415c4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := THIS;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="FB_init" Id="{5a15df2b-2053-43e1-92ac-307f29102340}">
       <Declaration><![CDATA[{attribute 'hide'}
 {attribute 'no_explicit_call' := 'direct call for this method is not allowed'} 
@@ -20,16 +114,154 @@ METHOD FB_init : BOOL
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+VAR
+	i : FsT_Size;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Property Name="InstanceName" Id="{052e976a-67c5-4ac5-bdfe-816db3d0b462}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Represents the name of the object.
+PROPERTY InstanceName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{93eef253-a07b-49fc-b561-a0c3c3b8d40b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[InstanceName := THIS^._InstanceName(FsT_Accessor.Get, '');]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="InstancePath" Id="{218ed01a-d849-4c65-abf6-b55439d7517f}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Represents the path to the object.
+PROPERTY InstancePath : FsT_LStr]]></Declaration>
+      <Get Name="Get" Id="{0f631ee9-366e-4d13-8b5f-ec18d6b4567b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[InstancePath := THIS^._InstancePath(FsT_Accessor.Get, '');]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Is" Id="{f68eded3-5c4f-48e4-a1f7-d41bc7feec35}" FolderPath="Methods\">
+      <Declaration><![CDATA[// Checks if the current object is the same as (reference-wise) object as the input object.
+METHOD FINAL Is : BOOL
+VAR_INPUT
+	ipObject : FsI_Object;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ipObject <> 0 THEN Is := ipObject.Address = THIS; END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="MemoryArea" Id="{e32d98e4-15ab-4c88-8320-1cf851d9094c}" FolderPath="Properties\">
+      <Declaration><![CDATA[// Memory area that the object is allocated in.
+PROPERTY FINAL MemoryArea : FsT_MemArea]]></Declaration>
+      <Get Name="Get" Id="{0cb27507-fdbf-437b-a27f-717e8f9abf9a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MemoryArea := Tc2_System.F_CheckMemoryArea(THIS, 1);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Size" Id="{ec229d8f-c9f5-4131-ac66-6ff8ee3e8ff6}" FolderPath="Properties\">
+      <Declaration><![CDATA[//  Size of the object in bytes.
+PROPERTY Size : FsT_Size]]></Declaration>
+      <Get Name="Get" Id="{5c227faa-2113-4148-a339-352f5334e00b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := THIS^._Size(FsT_Accessor.Get, '');]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ToString" Id="{fd669478-cc29-4dd3-b596-b7591a7cd36c}" FolderPath="Methods\">
+      <Declaration><![CDATA[// Converts this object to a string representation.
+{attribute 'hide'}
+{attribute 'no_explicit_call' := 'direct call for this method is not allowed'}
+METHOD ToString : FsT_LStr]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="TypeName" Id="{798da96d-0670-4365-8189-eab7f1df96d3}" FolderPath="Properties\">
+      <Declaration><![CDATA[// A string that represents the type of the object.
+PROPERTY TypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{aea9ec0c-e0a1-480b-82b8-9eff58306bd6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TypeName:= THIS^._TypeName(FsT_Accessor.Get, '');]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <LineIds Name="FsFB_Object">
       <LineId Id="9" Count="0" />
     </LineIds>
+    <LineIds Name="FsFB_Object._InstanceName">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object._InstancePath">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object._Size">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object._TypeName">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.Address.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
     <LineIds Name="FsFB_Object.FB_init">
       <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.InstanceName.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.InstancePath.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.Is">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.MemoryArea.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.Size.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.ToString">
+      <LineId Id="3" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.TypeName.Get">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

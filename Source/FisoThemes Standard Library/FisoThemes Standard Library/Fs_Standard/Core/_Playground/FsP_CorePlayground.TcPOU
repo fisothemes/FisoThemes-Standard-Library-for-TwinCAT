@@ -3,25 +3,13 @@
   <POU Name="FsP_CorePlayground" Id="{fe32e6f4-2a42-43f5-bef2-f3cbb688e3ff}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM INTERNAL FsP_CorePlayground
 VAR
-END_VAR
-]]></Declaration>
-    <Implementation>
-      <ST><![CDATA[ObjectPlayground();]]></ST>
-    </Implementation>
-    <Method Name="ObjectPlayground" Id="{4f6b7c84-bbf7-4e1b-b1dc-e6f3bb166694}">
-      <Declaration><![CDATA[METHOD PRIVATE ObjectPlayground
-VAR_STAT
 	fbObj : FsT_Obj;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
+	sSymName : STRING(255) := FsF_GetTypeNameByAddress(ADR(fbObj), SIZEOF(fbObj));
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
     <LineIds Name="FsP_CorePlayground">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FsP_CorePlayground.ObjectPlayground">
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

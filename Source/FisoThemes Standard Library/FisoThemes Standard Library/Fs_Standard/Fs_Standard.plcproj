@@ -22,7 +22,28 @@
     <ProjectVersion>0.0.0.0</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_Accessor.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_Char.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_MemArea.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\DataUnitTypes\Alias\FsT_Obj.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_PlcAppInfo.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_PlcTaskInfo.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_Ptr.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_Size.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\DataUnitTypes\Alias\FsT_Str.TcDUT">
@@ -31,7 +52,40 @@
     <Compile Include="Core\DataUnitTypes\Alias\FsT_LStr.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_TypeClass.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_VarInfo.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Enums\FsE_Accessor.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\DataUnitTypes\Structs\FsST_PlcTaskInformation.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\FunctionBlocks\FsFB_Object.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetPlcTaskInformation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetTypeNameByAddress.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetVariableNameByAddress.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetTypeNameByPath.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_IecApplicationInformation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Interfaces\FsI_Cloneable.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Interfaces\FsI_Equatable.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Interfaces\FsI_Unknown.TcIO">
@@ -116,22 +170,27 @@
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Fs_Standard.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" />
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

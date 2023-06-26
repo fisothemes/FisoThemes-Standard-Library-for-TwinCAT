@@ -19,13 +19,12 @@ Please note that the Fisothemes's Standard Library for TwinCAT is currently unde
 ```
 FsFB_Object IMPLEMENTS FsI_Object
 ├── Methods
-│   ├── Equals(Obj : REFERENCE TO FsT_Obj) -> BOOL
-│   ├── Is(Obj : REFERENCE TO FsT_Obj) -> BOOL
+│   ├── Is(ipObject : FsI_Object) -> BOOL
 │   └── ToString() -> FsT_LStr
 └── Properties
     ├── InstanceName : FsT_Str
     ├── TypeName : FsT_Str
-    ├── InstacePath : FsT_Str
+    ├── InstacePath : FsT_LStr
     ├── Address : FsT_Ptr
     ├── Size : FsT_Size
     └── MemoryArea : FsT_MemArea
@@ -45,7 +44,7 @@ FsI_Error
 **Declarations:** 
 ```ST
 VAR
-    sValue : STRING(255);
+    sValue : STRING();
     fbImmutStr : FsFB_ImmutableString('I love cats!');
     DogPos : FsT_Pos;
     ipErr : FsI_Error;
