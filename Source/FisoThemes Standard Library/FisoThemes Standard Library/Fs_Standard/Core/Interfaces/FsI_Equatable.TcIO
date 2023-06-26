@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Itf Name="FsI_Equatable" Id="{a4c26b91-f8af-43c2-bc80-c66cd45e60fa}">
+    <Declaration><![CDATA[// Generic interface for cgecking objects for equality
+INTERFACE FsI_Equatable EXTENDS FsI_Unknown
+]]></Declaration>
+    <Method Name="Equals" Id="{595098f3-2a9e-483a-9111-0ca4827babf1}">
+      <Declaration><![CDATA[// Compares this object to another object and returns TRUE if they are equal, or FALSE otherwise.
+METHOD Equals : BOOL
+VAR_INPUT
+	ipObject : FsI_Object;
+END_VAR]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Itf Name="FsI_Cloneable" Id="{f0cc991c-ad6a-471e-878b-5acab858f1f9}">
+    <Declaration><![CDATA[INTERFACE FsI_Cloneable EXTENDS HgI_Unknown
+]]></Declaration>
+    <Method Name="Clone" Id="{27700283-24dd-4d5e-bd76-b85d215190cc}">
+      <Declaration><![CDATA[METHOD Clone : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
