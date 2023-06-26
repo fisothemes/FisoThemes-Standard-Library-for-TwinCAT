@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetVariableNameByAddress" Id="{3df9d881-dcb6-4e66-8145-7b633a8a6563}" SpecialFunc="None">
+    <Declaration><![CDATA[// Returns the name of a variable as a string using its pointer and size.
+// Variables allocated in dynamic memory are not supported.
+FUNCTION FsF_GetVariableNameByAddress : FsT_Str
+VAR_INPUT
+	Address : PVOID; // Pointer to variable.
+	Size : FsT_Size; // Size of variable in bytes.
+END_VAR
+VAR 
+	nTmp : UDINT := SIZEOF(FsF_GetVariableNameByAddress);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FsF_IecApplicationInformation().GetSymbolNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetVariableNameByAddress">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

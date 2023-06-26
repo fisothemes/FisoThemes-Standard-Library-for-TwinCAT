@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetTypeNameByPath" Id="{b78d29b7-a201-4bb0-8581-654cfe213643}" SpecialFunc="None">
+    <Declaration><![CDATA[// Returns the datatype of a variable as a string using its path.
+FUNCTION FsF_GetTypeNameByPath : FsT_Str
+VAR_INPUT
+	Path : FsT_LStr; // Variable/Symbol path as string | e.g. 'MAIN.nVar'
+END_VAR
+VAR 
+	nTmp : UDINT := SIZEOF(FsF_GetTypeNameByPath);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FsF_IecApplicationInformation().GetSymbolDatatype(Path, nTmp, ADR(FsF_GetTypeNameByPath));]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetTypeNameByPath">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

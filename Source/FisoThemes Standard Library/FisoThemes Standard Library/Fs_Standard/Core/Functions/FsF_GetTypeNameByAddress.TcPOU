@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetTypeNameByAddress" Id="{8b0eb9a2-7080-4741-86e4-faa13a477e15}" SpecialFunc="None">
+    <Declaration><![CDATA[// Returns the datatype of a variable as a string using its pointer and size.
+// Variables allocated in dynamic memory are not supported.
+FUNCTION FsF_GetTypeNameByAddress : FsT_Str
+VAR_INPUT
+	Address : PVOID; // Pointer to variable.
+	Size : FsT_Size; // Size of variable in bytes.
+END_VAR
+VAR 
+	nTmp : UDINT := SIZEOF(FsF_GetTypeNameByAddress);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FsF_IecApplicationInformation().GetDatatypeNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetTypeNameByAddress">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

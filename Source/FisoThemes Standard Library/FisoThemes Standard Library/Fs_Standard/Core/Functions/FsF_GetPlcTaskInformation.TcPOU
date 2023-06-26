@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetPlcTaskInformation" Id="{dc8d3861-d0e5-4c49-bbdb-76c4b9b10aa7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION FsF_GetPlcTaskInformation : FsT_PlcTaskInfo
+VAR_STAT
+	fbGetCurrentTaskIndex : GETCURTASKINDEX;
+	stPlcTaskInfo : PlcTaskSystemInfo;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbGetCurrentTaskIndex();
+stPlcTaskInfo := TwinCAT_SystemInfoVarList._TaskInfo[fbGetCurrentTaskIndex.index];
+
+FsF_GetPlcTaskInformation.AdsPort 					:= stPlcTaskInfo.AdsPort;
+FsF_GetPlcTaskInformation.CycleCount 				:= stPlcTaskInfo.CycleCount;
+FsF_GetPlcTaskInformation.CycleTime 				:= stPlcTaskInfo.CycleTime;
+FsF_GetPlcTaskInformation.CycleTimeExceeded 		:= stPlcTaskInfo.CycleTimeExceeded;
+FsF_GetPlcTaskInformation.DcTaskTime 				:= stPlcTaskInfo.DcTaskTime;
+FsF_GetPlcTaskInformation.FirstCycle				:= stPlcTaskInfo.FirstCycle;
+FsF_GetPlcTaskInformation.InCallAfterOutputUpdate 	:= stPlcTaskInfo.InCallAfterOutputUpdate;
+FsF_GetPlcTaskInformation.LastExecTime 				:= stPlcTaskInfo.LastExecTime;
+FsF_GetPlcTaskInformation.ObjId 					:= stPlcTaskInfo.ObjId;
+FsF_GetPlcTaskInformation.Priority 					:= stPlcTaskInfo.Priority;
+FsF_GetPlcTaskInformation.RTViolation 				:= stPlcTaskInfo.RTViolation;
+FsF_GetPlcTaskInformation.TaskName 					:= stPlcTaskInfo.TaskName;
+FsF_GetPlcTaskInformation.tCycleTime 				:= TO_LTIME(stPlcTaskInfo.CycleTime*100);]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetPlcTaskInformation">
+      <LineId Id="35" Count="14" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
