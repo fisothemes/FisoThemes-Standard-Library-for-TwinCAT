@@ -44,7 +44,7 @@ FsI_Error
 **Declarations:** 
 ```ST
 VAR
-    sValue : STRING();
+    sValue : STRING(255);
     fbImmutStr : FsFB_ImmutableString('I love cats!');
     DogPos : FsT_Pos;
     ipErr : FsI_Error;
