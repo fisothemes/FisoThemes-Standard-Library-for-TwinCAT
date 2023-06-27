@@ -22,7 +22,6 @@ FsFB_Object IMPLEMENTS FsI_Object
 │   ├── Is(ipObject : FsI_Object) -> BOOL
 │   └── ToString() -> FsT_LStr
 └── Properties
-    ├── InstanceName : FsT_Str
     ├── TypeName : FsT_Str
     ├── InstacePath : FsT_LStr
     ├── Address : FsT_Ptr
