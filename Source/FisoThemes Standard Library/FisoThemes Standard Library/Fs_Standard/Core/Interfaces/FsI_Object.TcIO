@@ -12,13 +12,6 @@ PROPERTY Address : FsT_Ptr]]></Declaration>
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="InstanceName" Id="{4875e02c-5e8e-42e1-a549-5c7302c2ef0d}" FolderPath="Properties\">
-      <Declaration><![CDATA[// Represents the name of the object.
-PROPERTY InstanceName : FsT_Str]]></Declaration>
-      <Get Name="Get" Id="{91a6c7c7-bfac-4b20-b55b-66bc5fd48fe8}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
     <Property Name="InstancePath" Id="{ad2ab2a4-30f3-4204-901b-e2de4905e992}" FolderPath="Properties\">
       <Declaration><![CDATA[// Represents the path to the object.
 PROPERTY InstancePath : FsT_LStr]]></Declaration>

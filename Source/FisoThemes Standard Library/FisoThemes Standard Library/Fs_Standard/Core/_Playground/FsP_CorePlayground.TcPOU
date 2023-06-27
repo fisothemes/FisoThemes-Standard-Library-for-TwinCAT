@@ -5,12 +5,26 @@
 VAR
 	fbObj : FsT_Obj;
 	sSymName : STRING(255) := FsF_GetTypeNameByAddress(ADR(fbObj), SIZEOF(fbObj));
+	arData : ARRAY[0..3] OF FsT_LStr;
+	Sz0,Sz1 : FsT_Size;
+	Val : UINT;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[//Val := FsF_GetPlcTaskInformation().AdsPort; // throws error but compiles, hmmm...
+arData[0] := fbObj.InstancePath;
+arData[1] := fbObj.TypeName;
+arData[2] := FsF_GetVariableNameByAddress(ADR(Val), SIZEOF(Val));
+Sz0 := fbObj.Size;
+Sz1 := SIZEOF(fbObj);
+]]></ST>
     </Implementation>
     <LineIds Name="FsP_CorePlayground">
       <LineId Id="5" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

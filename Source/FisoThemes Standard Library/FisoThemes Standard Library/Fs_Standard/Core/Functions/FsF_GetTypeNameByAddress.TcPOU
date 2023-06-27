@@ -12,9 +12,11 @@ VAR
 	nTmp : UDINT := SIZEOF(FsF_GetTypeNameByAddress);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[FsF_IecApplicationInformation().GetDatatypeNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
+      <ST><![CDATA[IF Size = 0 THEN RETURN; END_IF
+FsF_IecApplicationInformation().GetDatatypeNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetTypeNameByAddress">
+      <LineId Id="17" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
   </POU>

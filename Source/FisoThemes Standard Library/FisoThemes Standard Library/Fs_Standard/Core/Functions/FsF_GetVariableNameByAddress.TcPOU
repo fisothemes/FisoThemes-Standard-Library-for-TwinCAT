@@ -8,13 +8,15 @@ VAR_INPUT
 	Address : PVOID; // Pointer to variable.
 	Size : FsT_Size; // Size of variable in bytes.
 END_VAR
-VAR 
-	nTmp : UDINT := SIZEOF(FsF_GetVariableNameByAddress);
+VAR
+	nTmp : UDINT := SIZEOF(FsT_Str);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[FsF_IecApplicationInformation().GetSymbolNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
+      <ST><![CDATA[IF Size = 0 THEN RETURN; END_IF
+FsF_IecApplicationInformation().GetSymbolNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetVariableNameByAddress));]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetVariableNameByAddress">
+      <LineId Id="17" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
   </POU>

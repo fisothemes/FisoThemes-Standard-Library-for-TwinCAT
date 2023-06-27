@@ -3,7 +3,7 @@
   <DUT Name="FsST_PlcTaskInformation" Id="{311720c0-a47e-4a31-a1d4-f7cf7324c3a4}">
     <Declaration><![CDATA[TYPE FsST_PlcTaskInformation EXTENDS PlcTaskSystemInfo :
 STRUCT
-	tCycleTime : LTIME; // Current task cycle time
+	CycleTicks : LTIME; // Current task cycle time
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

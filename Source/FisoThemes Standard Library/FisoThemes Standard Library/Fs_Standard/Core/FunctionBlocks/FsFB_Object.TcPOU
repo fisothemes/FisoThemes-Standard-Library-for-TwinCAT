@@ -6,36 +6,12 @@
 {attribute 'reflection'}
 {attribute 'no_assign'}
 {attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
-FUNCTION_BLOCK FsFB_Object IMPLEMENTS FsI_Object
-VAR CONSTANT
-	{attribute 'instance-path'} 
-    {attribute 'noinit'} 
-    _p_a_t_h_ : FsT_LStr := '';
-END_VAR]]></Declaration>
+FUNCTION_BLOCK FsFB_Object IMPLEMENTS FsI_Object]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Folder Name="Methods" Id="{9e68c5d1-f194-4f3e-b6b3-7681e0f201d7}" />
     <Folder Name="Properties" Id="{6e68efcf-a06b-4741-a90c-39cba0c68559}" />
-    <Method Name="_InstanceName" Id="{ee0e5d50-4624-447a-b787-3fae3b1a51d1}" FolderPath="Methods\">
-      <Declaration><![CDATA[// Private local variable for instance name
-METHOD PRIVATE _InstanceName : FsT_Str
-VAR_INPUT
-	Accessor : FsT_Accessor;
-	Data : FsT_Str;
-END_VAR
-VAR_INST
-	Store : FsT_Str;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[CASE Accessor OF
-	FsT_Accessor.Set:
-		_InstanceName := Store := Data;
-	FsT_Accessor.Get:
-		_InstanceName := Store;
-	END_CASE]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="_InstancePath" Id="{5e518097-12b8-4fe0-84c6-c04bfa42b096}" FolderPath="Methods\">
       <Declaration><![CDATA[// Private local variable for instance path
 METHOD PRIVATE _InstancePath : FsT_LStr
@@ -116,24 +92,26 @@ VAR_INPUT
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
 END_VAR
 VAR
-	i : FsT_Size;
+	sTypeName : FsT_Str;
+	sInstancePath : FsT_LStr;
+	i : FsT_Size := SIZEOF(THIS^);
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[CASE THIS^.MemoryArea OF
+	FsT_MemArea.Static:
+		FOR i := SIZEOF(THIS^) TO 10000 DO
+			sTypeName := FsF_GetTypeNameByAddress(THIS, i);
+			IF sTypeName <> '' THEN EXIT; END_IF
+			END_FOR
+			
+		sInstancePath := FsF_GetVariableNameByAddress(THIS, i);
+	END_CASE
+	
+THIS^._TypeName(FsT_Accessor.Set, sTypeName);
+THIS^._Size(FsT_Accessor.Set, i);
+THIS^._InstancePath(FsT_Accessor.Set, sInstancePath);		]]></ST>
       </Implementation>
     </Method>
-    <Property Name="InstanceName" Id="{052e976a-67c5-4ac5-bdfe-816db3d0b462}" FolderPath="Properties\">
-      <Declaration><![CDATA[// Represents the name of the object.
-PROPERTY InstanceName : FsT_Str]]></Declaration>
-      <Get Name="Get" Id="{93eef253-a07b-49fc-b561-a0c3c3b8d40b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[InstanceName := THIS^._InstanceName(FsT_Accessor.Get, '');]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Property Name="InstancePath" Id="{218ed01a-d849-4c65-abf6-b55439d7517f}" FolderPath="Properties\">
       <Declaration><![CDATA[// Represents the path to the object.
 PROPERTY InstancePath : FsT_LStr]]></Declaration>
@@ -176,7 +154,7 @@ PROPERTY Size : FsT_Size]]></Declaration>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Size := THIS^._Size(FsT_Accessor.Get, '');]]></ST>
+          <ST><![CDATA[Size := THIS^._Size(FsT_Accessor.Get, 0);]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -203,14 +181,6 @@ END_VAR
     </Property>
     <LineIds Name="FsFB_Object">
       <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FsFB_Object._InstanceName">
-      <LineId Id="5" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object._InstancePath">
       <LineId Id="5" Count="0" />
@@ -240,10 +210,17 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.FB_init">
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="28" Count="2" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="32" Count="0" />
       <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="FsFB_Object.InstanceName.Get">
-      <LineId Id="2" Count="0" />
+      <LineId Id="34" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.InstancePath.Get">
       <LineId Id="2" Count="0" />
