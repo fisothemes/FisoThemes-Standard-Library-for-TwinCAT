@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsFB_TcComInterfaceManager" Id="{e24bb523-913f-47be-9600-9bea0f20d987}" SpecialFunc="None">
+    <Declaration><![CDATA[// Internal class that manages TcCOM Interfaces used by Fs_Standard.
+{attribute 'no_assign'}
+{attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
+FUNCTION_BLOCK INTERNAL FINAL FsFB_TcComInterfaceManager IMPLEMENTS FsI_UnKnown
+VAR
+	_ipIecApplicationInformation : ITcIecApplicationInfo;
+	_hIecApplicationInformation : HRESULT := Tc3_Module.GVL.E_FAIL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{728bc26f-a680-4b9c-8d35-54eab5f678cc}">
+      <Declaration><![CDATA[{attribute 'hide'}
+METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// no online change
+IF NOT bInCopyCode THEN
+	// Safe release of ITcIecApplicationInfo.
+    Tc3_Module.FW_SafeRelease(ADR(THIS^._ipIecApplicationInformation));
+	THIS^._hIecApplicationInformation := Tc3_Module.GVL.E_FAIL;
+	END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{e674354e-d58d-4f55-b560-731ed7e0aaef}">
+      <Declaration><![CDATA[{attribute 'hide'}
+{attribute 'no_explicit_call' := 'direct call for this method is not allowed'}
+METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// No online change.
+IF NOT bInCopyCode THEN
+	// Get instance of ITcIecApplicationInfo.
+	THIS^._hIecApplicationInformation := Tc3_Module.FW_ObjMgr_GetObjectInstance(
+		TwinCAT_SystemInfoVarList._AppInfo.ObjId, 
+		TC_GLOBAL_IID_LIST.IID_ITcIecApplicationInfo, 
+		ADR(THIS^._ipIecApplicationInformation)
+	);
+	END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetITcIecApplicationInfo" Id="{33334846-ac24-44bc-aff0-c44abfe0ffa1}">
+      <Declaration><![CDATA[METHOD GetITcIecApplicationInfo : ITcIecApplicationInfo
+VAR_OUTPUT
+	bSuccess : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// If instance of ITcIecApplicationInfo failed to be obtained on 
+// FB_init or FB_exit was explicitly called try to get it gain.
+IF Tc3_Module.FAILED(THIS^._hIecApplicationInformation) THEN
+	THIS^._hIecApplicationInformation := Tc3_Module.FW_ObjMgr_GetObjectInstance(
+		TwinCAT_SystemInfoVarList._AppInfo.ObjId, 
+		TC_GLOBAL_IID_LIST.IID_ITcIecApplicationInfo, 
+		ADR(THIS^._ipIecApplicationInformation)
+	);
+	END_IF
+	
+bSuccess := Tc3_Module.SUCCEEDED(THIS^._hIecApplicationInformation);
+GetITcIecApplicationInfo := THIS^._ipIecApplicationInformation;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FsFB_TcComInterfaceManager">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_TcComInterfaceManager.FB_exit">
+      <LineId Id="10" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_TcComInterfaceManager.FB_init">
+      <LineId Id="16" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_TcComInterfaceManager.GetITcIecApplicationInfo">
+      <LineId Id="14" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
