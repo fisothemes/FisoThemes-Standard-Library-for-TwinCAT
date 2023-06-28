@@ -5,19 +5,20 @@
 // Variables allocated in dynamic memory are not supported.
 FUNCTION FsF_GetVariableNameByAddress : FsT_Str
 VAR_INPUT
-	Address : PVOID; // Pointer to variable.
+	Address : FsT_Ptr; // Pointer to variable.
 	Size : FsT_Size; // Size of variable in bytes.
 END_VAR
 VAR
 	nTmp : UDINT := SIZEOF(FsT_Str);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Size = 0 THEN RETURN; END_IF
-FsF_IecApplicationInformation().GetSymbolNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetVariableNameByAddress));]]></ST>
+      <ST><![CDATA[_FsGVL.fbTcComInterfaceManager
+	.GetITcIecApplicationInfo()
+	.GetSymbolNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetVariableNameByAddress));]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetVariableNameByAddress">
-      <LineId Id="17" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="28" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

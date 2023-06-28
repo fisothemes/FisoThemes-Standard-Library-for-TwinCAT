@@ -3,28 +3,23 @@
   <POU Name="FsP_CorePlayground" Id="{fe32e6f4-2a42-43f5-bef2-f3cbb688e3ff}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM INTERNAL FsP_CorePlayground
 VAR
-	fbObj : FsT_Obj;
-	sSymName : STRING(255) := FsF_GetTypeNameByAddress(ADR(fbObj), SIZEOF(fbObj));
-	arData : ARRAY[0..3] OF FsT_LStr;
+	fbObj : FsFB_Object;
 	Sz0,Sz1 : FsT_Size;
-	Val : UINT;
+	sName : STRING(255) := FsF_GetTypeNameByAddress(ADR(fbObj), SIZEOF(fbObj));
+	arData : ARRAY[0..3] OF FsT_LStr;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//Val := FsF_GetPlcTaskInformation().AdsPort; // throws error but compiles, hmmm...
-arData[0] := fbObj.InstancePath;
+      <ST><![CDATA[arData[0] := fbObj.InstancePath;
 arData[1] := fbObj.TypeName;
-arData[2] := FsF_GetVariableNameByAddress(ADR(Val), SIZEOF(Val));
+arData[2] := FsF_GetVariableNameByAddress(ADR(fbObj), SIZEOF(fbObj));
 Sz0 := fbObj.Size;
-Sz1 := SIZEOF(fbObj);
-]]></ST>
+Sz1 := SIZEOF(fbObj);]]></ST>
     </Implementation>
     <LineIds Name="FsP_CorePlayground">
-      <LineId Id="5" Count="0" />
       <LineId Id="14" Count="1" />
       <LineId Id="25" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="12" Count="0" />
-      <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

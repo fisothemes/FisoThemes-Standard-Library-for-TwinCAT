@@ -1,35 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="FsF_GetPlcTaskInformation" Id="{dc8d3861-d0e5-4c49-bbdb-76c4b9b10aa7}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION FsF_GetPlcTaskInformation : REFERENCE TO FsT_PlcTaskInfo
-VAR_STAT
+    <Declaration><![CDATA[FUNCTION FsF_GetPlcTaskInformation : FsT_PlcTaskInfo
+VAR
 	fbGetCurrentTaskIndex : GETCURTASKINDEX;
 	PlcTaskSysInfo : PlcTaskSystemInfo;
-	PlcTaskInfo : FsT_PlcTaskInfo;
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbGetCurrentTaskIndex();
 PlcTaskSysInfo := TwinCAT_SystemInfoVarList._TaskInfo[fbGetCurrentTaskIndex.index];
-PlcTaskInfo.AdsPort 				:= PlcTaskSysInfo.AdsPort;
-PlcTaskInfo.CycleCount 				:= PlcTaskSysInfo.CycleCount;
-PlcTaskInfo.CycleTime 				:= PlcTaskSysInfo.CycleTime;
-PlcTaskInfo.CycleTimeExceeded 		:= PlcTaskSysInfo.CycleTimeExceeded;
-PlcTaskInfo.DcTaskTime 				:= PlcTaskSysInfo.DcTaskTime;
-PlcTaskInfo.FirstCycle				:= PlcTaskSysInfo.FirstCycle;
-PlcTaskInfo.InCallAfterOutputUpdate := PlcTaskSysInfo.InCallAfterOutputUpdate;
-PlcTaskInfo.LastExecTime 			:= PlcTaskSysInfo.LastExecTime;
-PlcTaskInfo.ObjId 					:= PlcTaskSysInfo.ObjId;
-PlcTaskInfo.Priority 				:= PlcTaskSysInfo.Priority;
-PlcTaskInfo.RTViolation 			:= PlcTaskSysInfo.RTViolation;
-PlcTaskInfo.TaskName 				:= PlcTaskSysInfo.TaskName;
-PlcTaskInfo.CycleTicks 				:= TO_LTIME(PlcTaskSysInfo.CycleTime*100);
-
-FsF_GetPlcTaskInformation REF= PlcTaskInfo;]]></ST>
+FsF_GetPlcTaskInformation.AdsPort 					:= PlcTaskSysInfo.AdsPort;
+FsF_GetPlcTaskInformation.CycleCount 				:= PlcTaskSysInfo.CycleCount;
+FsF_GetPlcTaskInformation.CycleTime 				:= PlcTaskSysInfo.CycleTime;
+FsF_GetPlcTaskInformation.CycleTimeExceeded 		:= PlcTaskSysInfo.CycleTimeExceeded;
+FsF_GetPlcTaskInformation.DcTaskTime 				:= PlcTaskSysInfo.DcTaskTime;
+FsF_GetPlcTaskInformation.FirstCycle				:= PlcTaskSysInfo.FirstCycle;
+FsF_GetPlcTaskInformation.InCallAfterOutputUpdate 	:= PlcTaskSysInfo.InCallAfterOutputUpdate;
+FsF_GetPlcTaskInformation.LastExecTime 				:= PlcTaskSysInfo.LastExecTime;
+FsF_GetPlcTaskInformation.ObjId 					:= PlcTaskSysInfo.ObjId;
+FsF_GetPlcTaskInformation.Priority 					:= PlcTaskSysInfo.Priority;
+FsF_GetPlcTaskInformation.RTViolation 				:= PlcTaskSysInfo.RTViolation;
+FsF_GetPlcTaskInformation.TaskName 					:= PlcTaskSysInfo.TaskName;
+FsF_GetPlcTaskInformation.CycleTicks 				:= TO_LTIME(PlcTaskSysInfo.CycleTime*100);]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetPlcTaskInformation">
-      <LineId Id="73" Count="15" />
-      <LineId Id="64" Count="0" />
+      <LineId Id="73" Count="14" />
     </LineIds>
   </POU>
 </TcPlcObject>

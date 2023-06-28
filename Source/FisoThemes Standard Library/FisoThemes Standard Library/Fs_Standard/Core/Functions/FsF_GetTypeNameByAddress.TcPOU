@@ -5,19 +5,21 @@
 // Variables allocated in dynamic memory are not supported.
 FUNCTION FsF_GetTypeNameByAddress : FsT_Str
 VAR_INPUT
-	Address : PVOID; // Pointer to variable.
+	Address : FsT_Ptr; // Pointer to variable.
 	Size : FsT_Size; // Size of variable in bytes.
 END_VAR
 VAR 
 	nTmp : UDINT := SIZEOF(FsF_GetTypeNameByAddress);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Size = 0 THEN RETURN; END_IF
-FsF_IecApplicationInformation().GetDatatypeNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
+      <ST><![CDATA[_FsGVL.fbTcComInterfaceManager
+	.GetITcIecApplicationInfo()
+	.GetDatatypeNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetTypeNameByAddress">
-      <LineId Id="17" Count="0" />
+      <LineId Id="27" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

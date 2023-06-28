@@ -12,27 +12,6 @@ FUNCTION_BLOCK FsFB_Object IMPLEMENTS FsI_Object]]></Declaration>
     </Implementation>
     <Folder Name="Methods" Id="{9e68c5d1-f194-4f3e-b6b3-7681e0f201d7}" />
     <Folder Name="Properties" Id="{6e68efcf-a06b-4741-a90c-39cba0c68559}" />
-    <Method Name="_InstancePath" Id="{5e518097-12b8-4fe0-84c6-c04bfa42b096}" FolderPath="Methods\">
-      <Declaration><![CDATA[// Private local variable for instance path
-METHOD PRIVATE _InstancePath : FsT_LStr
-VAR_INPUT
-	Accessor : FsT_Accessor;
-	Data : FsT_LStr;
-END_VAR
-VAR_INST
-	{attribute 'instance-path'} 
-    {attribute 'noinit'} 
-	Store : FsT_LStr;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[CASE Accessor OF
-	FsT_Accessor.Set:
-		_InstancePath := Store := Data;
-	FsT_Accessor.Get:
-		_InstancePath := Store;
-	END_CASE]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="_Size" Id="{9947d38c-b13b-4f37-bc4a-f1fd93a541f7}" FolderPath="Methods\">
       <Declaration><![CDATA[// Private local variable for object size
 METHOD PRIVATE _Size : FsT_Size
@@ -85,7 +64,6 @@ END_VAR
     </Property>
     <Method Name="FB_init" Id="{5a15df2b-2053-43e1-92ac-307f29102340}">
       <Declaration><![CDATA[{attribute 'hide'}
-{attribute 'no_explicit_call' := 'direct call for this method is not allowed'} 
 METHOD FB_init : BOOL
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
@@ -93,34 +71,50 @@ VAR_INPUT
 END_VAR
 VAR
 	sTypeName : FsT_Str;
-	sInstancePath : FsT_LStr;
-	i : FsT_Size := SIZEOF(THIS^);
+	i : FsT_Size := 0;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE THIS^.MemoryArea OF
+        <ST><![CDATA[// If size has already been initialised then don't run this again.
+IF THIS^.Size <> 0 THEN RETURN; END_IF
+
+CASE THIS^.MemoryArea OF
 	FsT_MemArea.Static:
 		FOR i := SIZEOF(THIS^) TO 10000 DO
 			sTypeName := FsF_GetTypeNameByAddress(THIS, i);
 			IF sTypeName <> '' THEN EXIT; END_IF
 			END_FOR
-			
-		sInstancePath := FsF_GetVariableNameByAddress(THIS, i);
+		THIS^._TypeName(FsT_Accessor.Set, sTypeName);
+		THIS^._Size(FsT_Accessor.Set, i);
+	FsT_MemArea.Dynamic:
+		THIS^._TypeName(FsT_Accessor.Set,'FsFB_Object');
+		THIS^._Size(FsT_Accessor.Set, SIZEOF(THIS^));
+	FsT_MemArea.CNC:
+		THIS^._TypeName(FsT_Accessor.Set,'<Unsupported>');
+		THIS^._Size(FsT_Accessor.Set, SIZEOF(THIS^));
+ELSE
+	THIS^._TypeName(FsT_Accessor.Set,'<Unknown>');
+	THIS^._Size(FsT_Accessor.Set, SIZEOF(THIS^));
 	END_CASE
-	
-THIS^._TypeName(FsT_Accessor.Set, sTypeName);
-THIS^._Size(FsT_Accessor.Set, i);
-THIS^._InstancePath(FsT_Accessor.Set, sInstancePath);		]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Property Name="InstancePath" Id="{218ed01a-d849-4c65-abf6-b55439d7517f}" FolderPath="Properties\">
       <Declaration><![CDATA[// Represents the path to the object.
-PROPERTY InstancePath : FsT_LStr]]></Declaration>
+PROPERTY FINAL InstancePath : FsT_LStr]]></Declaration>
       <Get Name="Get" Id="{0f631ee9-366e-4d13-8b5f-ec18d6b4567b}">
         <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
+END_VAR]]></Declaration>
         <Implementation>
-          <ST><![CDATA[InstancePath := THIS^._InstancePath(FsT_Accessor.Get, '');]]></ST>
+          <ST><![CDATA[CASE THIS^.MemoryArea OF
+	FsT_MemArea.Static: 
+		InstancePath := FsF_GetVariableNameByAddress(THIS, THIS^.Size);
+	FsT_MemArea.Dynamic:
+		InstancePath := '<Dynamic>';
+	FsT_MemArea.CNC:
+		InstancePath := '<Unsupported>';
+ELSE
+	InstancePath := '<Unknown>';
+	END_CASE]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -160,11 +154,9 @@ END_VAR
     </Property>
     <Method Name="ToString" Id="{fd669478-cc29-4dd3-b596-b7591a7cd36c}" FolderPath="Methods\">
       <Declaration><![CDATA[// Converts this object to a string representation.
-{attribute 'hide'}
-{attribute 'no_explicit_call' := 'direct call for this method is not allowed'}
 METHOD ToString : FsT_LStr]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[ToString := THIS^.TypeName;]]></ST>
       </Implementation>
     </Method>
     <Property Name="TypeName" Id="{798da96d-0670-4365-8189-eab7f1df96d3}" FolderPath="Properties\">
@@ -181,14 +173,6 @@ END_VAR
     </Property>
     <LineIds Name="FsFB_Object">
       <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FsFB_Object._InstancePath">
-      <LineId Id="5" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object._Size">
       <LineId Id="5" Count="0" />
@@ -210,20 +194,34 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.FB_init">
+      <LineId Id="121" Count="0" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="120" Count="0" />
       <LineId Id="22" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="28" Count="2" />
       <LineId Id="27" Count="0" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="46" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="106" Count="1" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="111" Count="1" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="118" Count="0" />
       <LineId Id="25" Count="0" />
-      <LineId Id="81" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="34" Count="0" />
+      <LineId Id="110" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.InstancePath.Get">
-      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.Is">
       <LineId Id="7" Count="0" />

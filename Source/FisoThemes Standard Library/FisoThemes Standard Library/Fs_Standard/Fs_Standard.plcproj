@@ -31,9 +31,6 @@
     <Compile Include="Core\DataUnitTypes\Alias\FsT_MemArea.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\DataUnitTypes\Alias\FsT_Obj.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Core\DataUnitTypes\Alias\FsT_PlcAppInfo.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -79,9 +76,6 @@
     <Compile Include="Core\Functions\FsF_GetTypeNameByPath.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Functions\FsF_IecApplicationInformation.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Core\Interfaces\FsI_Cloneable.TcIO">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +113,13 @@
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="_Internal\FunctionBlocks\FsFB_TcComInterfaceManager.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_Internal\Globals\_FsGVL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="_Internal\_MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -131,7 +132,11 @@
     <Folder Include="Version" />
     <Folder Include="VISUs" />
     <Folder Include="_Internal" />
-    <Folder Include="_TemplateFolder" />
+    <Folder Include="_Internal\Globals" />
+    <Folder Include="_Internal\FunctionBlocks" />
+    <Folder Include="_TemplateFolder">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Folder>
     <Folder Include="_TemplateFolder\DataUnitTypes" />
     <Folder Include="_TemplateFolder\DataUnitTypes\Alias" />
     <Folder Include="_TemplateFolder\DataUnitTypes\Enums" />
