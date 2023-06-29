@@ -10,8 +10,8 @@ VAR
 	nTmp : UDINT := SIZEOF(FsF_GetTypeNameByPath);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[_FsGVL.fbTcComInterfaceManager
-	.GetITcIecApplicationInfo()
+      <ST><![CDATA[_FsGVL.fbTcComIecApplicationInfo
+	.GetInterface()
 	.GetSymbolDatatype(Path, nTmp, ADR(FsF_GetTypeNameByPath));]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetTypeNameByPath">

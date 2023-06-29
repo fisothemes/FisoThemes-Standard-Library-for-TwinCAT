@@ -12,13 +12,12 @@ VAR
 	nTmp : UDINT := SIZEOF(FsF_GetTypeNameByAddress);
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[_FsGVL.fbTcComInterfaceManager
-	.GetITcIecApplicationInfo()
+      <ST><![CDATA[_FsGVL.fbTcComIecApplicationInfo
+	.GetInterface()
 	.GetDatatypeNameByAddress(TO_UDINT(Size), Address, nTmp, ADR(FsF_GetTypeNameByAddress));]]></ST>
     </Implementation>
     <LineIds Name="FsF_GetTypeNameByAddress">
-      <LineId Id="27" Count="0" />
-      <LineId Id="7" Count="0" />
+      <LineId Id="38" Count="1" />
       <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
