@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
-  <POU Name="FsFB_TcComInterfaceManager" Id="{e24bb523-913f-47be-9600-9bea0f20d987}" SpecialFunc="None">
-    <Declaration><![CDATA[// Internal class that manages TcCOM Interfaces used by Fs_Standard.
+  <POU Name="FsFB_TcComIecApplicationInfo" Id="{e24bb523-913f-47be-9600-9bea0f20d987}" SpecialFunc="None">
+    <Declaration><![CDATA[// Internal class that manages the ITcIecApplicationInfo TcCOM Interface used by Fs_Standard.
 {attribute 'no_assign'}
 {attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
-FUNCTION_BLOCK INTERNAL FINAL FsFB_TcComInterfaceManager IMPLEMENTS FsI_UnKnown
+FUNCTION_BLOCK INTERNAL FINAL FsFB_TcComIecApplicationInfo IMPLEMENTS FsI_UnKnown
 VAR
 	_ipIecApplicationInformation : ITcIecApplicationInfo;
 	_hIecApplicationInformation : HRESULT := Tc3_Module.GVL.E_FAIL;
@@ -49,8 +49,8 @@ IF NOT bInCopyCode THEN
 	END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetITcIecApplicationInfo" Id="{33334846-ac24-44bc-aff0-c44abfe0ffa1}">
-      <Declaration><![CDATA[METHOD GetITcIecApplicationInfo : ITcIecApplicationInfo
+    <Method Name="GetInterface" Id="{33334846-ac24-44bc-aff0-c44abfe0ffa1}">
+      <Declaration><![CDATA[METHOD GetInterface : ITcIecApplicationInfo
 VAR_OUTPUT
 	bSuccess : BOOL;
 END_VAR
@@ -67,13 +67,13 @@ IF Tc3_Module.FAILED(THIS^._hIecApplicationInformation) THEN
 	END_IF
 	
 bSuccess := Tc3_Module.SUCCEEDED(THIS^._hIecApplicationInformation);
-GetITcIecApplicationInfo := THIS^._ipIecApplicationInformation;]]></ST>
+GetInterface := THIS^._ipIecApplicationInformation;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FsFB_TcComInterfaceManager">
+    <LineIds Name="FsFB_TcComIecApplicationInfo">
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="FsFB_TcComInterfaceManager.FB_exit">
+    <LineIds Name="FsFB_TcComIecApplicationInfo.FB_exit">
       <LineId Id="10" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="11" Count="0" />
@@ -81,7 +81,7 @@ GetITcIecApplicationInfo := THIS^._ipIecApplicationInformation;]]></ST>
       <LineId Id="12" Count="0" />
       <LineId Id="6" Count="0" />
     </LineIds>
-    <LineIds Name="FsFB_TcComInterfaceManager.FB_init">
+    <LineIds Name="FsFB_TcComIecApplicationInfo.FB_init">
       <LineId Id="16" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="10" Count="0" />
@@ -92,7 +92,7 @@ GetITcIecApplicationInfo := THIS^._ipIecApplicationInformation;]]></ST>
       <LineId Id="17" Count="0" />
       <LineId Id="11" Count="0" />
     </LineIds>
-    <LineIds Name="FsFB_TcComInterfaceManager.GetITcIecApplicationInfo">
+    <LineIds Name="FsFB_TcComIecApplicationInfo.GetInterface">
       <LineId Id="14" Count="1" />
       <LineId Id="5" Count="0" />
       <LineId Id="11" Count="2" />

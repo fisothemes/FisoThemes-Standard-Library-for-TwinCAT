@@ -5,7 +5,7 @@
 VAR_GLOBAL INTERNAL
 END_VAR
 VAR_GLOBAL CONSTANT INTERNAL
-	fbTcComInterfaceManager : FsFB_TcComInterfaceManager := ();
+	fbTcComIecApplicationInfo : FsFB_TcComIecApplicationInfo := ();
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
