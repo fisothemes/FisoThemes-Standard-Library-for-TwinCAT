@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <DUT Name="FsT_LStr" Id="{63733188-7efc-48a4-b035-1cb92b558b1b}">
-    <Declaration><![CDATA[// Long FS string.
+    <Declaration><![CDATA[// Long string.
 // Size is a parameter located at FSParam_Core.nFST_STR_SIZE. | DEFAULT: 80
 TYPE FsT_LStr : STRING(FSParam_Core.nFST_LSTR_SIZE); END_TYPE]]></Declaration>
   </DUT>

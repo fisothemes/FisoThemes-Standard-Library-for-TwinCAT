@@ -3,8 +3,9 @@
   <GVL Name="FSParam_Core" Id="{23f779d3-74b3-4231-a330-7fe9e566b126}" ParameterList="True">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
-	nFST_STR_SIZE : UXINT := 80;
-	nFST_LSTR_SIZE : UXINT := 255;
+	nFST_STR_SIZE : UXINT := 80; // Size of general string.
+	nFST_SSTR_SIZE : UXINT := 40; // Size of short string.
+	nFST_LSTR_SIZE : UXINT := 255; // Size of long string.
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
