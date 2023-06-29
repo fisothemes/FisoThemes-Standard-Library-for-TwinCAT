@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsFB_ValueType" Id="{bfbb786f-fa50-41dc-9c6b-c6d5defd84a0}" SpecialFunc="None">
+    <Declaration><![CDATA[// Base class for assignable objects.
+// FsFB_Object contains the pragma {attribute 'no_assign'} to stop unsafe copies during upcasting.
+// If an object can safely be assigned with the assignment operator ('='), using this interface. 
+{attribute 'enable_dynamic_creation'}
+{attribute 'reflection'}
+{attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
+FUNCTION_BLOCK ABSTRACT FsFB_ValueType EXTENDS FsFB_Object IMPLEMENTS FsI_ValueType
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Properties" Id="{0d753f5f-0381-42a4-8d30-2462aae43b56}" />
+    <Property Name="DynamicTypeName" Id="{66e0b05e-a3a5-49e9-bba4-27028bc9c70a}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY PROTECTED DynamicTypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{3450d996-bb85-4e34-86be-2074e037f910}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DynamicTypeName := 'FsFB_ValueType';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FsFB_ValueType">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_ValueType.DynamicTypeName.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

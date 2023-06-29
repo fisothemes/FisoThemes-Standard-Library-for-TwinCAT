@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Itf Name="FsI_ValueType" Id="{0d1f5ee1-bbb8-4984-90d1-92642e6d36da}">
+    <Declaration><![CDATA[// Generic interface for assignable objects.
+// FsI_Object contains the pragma {attribute 'no_assign'} to stop unsafe copies during upcasting.
+// If an object can safely be assigned with the assignment operator ('='), using this interface. 
+INTERFACE FsI_ValueType EXTENDS FsI_Object]]></Declaration>
+  </Itf>
+</TcPlcObject>
