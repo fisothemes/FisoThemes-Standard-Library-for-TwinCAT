@@ -13,7 +13,7 @@ FUNCTION_BLOCK FsFB_Object IMPLEMENTS FsI_Object]]></Declaration>
     <Folder Name="Methods" Id="{9e68c5d1-f194-4f3e-b6b3-7681e0f201d7}" />
     <Folder Name="Properties" Id="{6e68efcf-a06b-4741-a90c-39cba0c68559}" />
     <Method Name="_Size" Id="{9947d38c-b13b-4f37-bc4a-f1fd93a541f7}" FolderPath="Methods\">
-      <Declaration><![CDATA[// Private local variable for object size
+      <Declaration><![CDATA[// Private local variable to store object's size
 METHOD PRIVATE _Size : FsT_Size
 VAR_INPUT
 	Accessor : FsT_Accessor;
@@ -31,25 +31,6 @@ END_VAR]]></Declaration>
 	END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="_TypeName" Id="{51bbe2bb-5cfe-4d45-b3cb-da827d8fdf88}" FolderPath="Methods\">
-      <Declaration><![CDATA[// Private local variable for type name
-METHOD PRIVATE _TypeName : FsT_Str
-VAR_INPUT
-	Accessor : FsT_Accessor;
-	Data : FsT_Str;
-END_VAR
-VAR_INST
-	Store : FsT_Str;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[CASE Accessor OF
-	FsT_Accessor.Set:
-		_TypeName := Store := Data;
-	FsT_Accessor.Get:
-		_TypeName := Store;
-	END_CASE]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="Address" Id="{7007c1fb-a7ab-4291-aa3a-d0ddd5d42f4e}" FolderPath="Properties\">
       <Declaration><![CDATA[// Pointer to the object in memory.
 PROPERTY FINAL Address : FsT_Ptr]]></Declaration>
@@ -59,6 +40,19 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[Address := THIS;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="DynamicTypeName" Id="{5d51a533-0704-4c7c-9757-7a76d7dbe92e}" FolderPath="Properties\">
+      <Declaration><![CDATA[// A string that represents the type of the object if the object is created dynamically.
+// Classes indeed for dynamic use must override this property.
+PROPERTY PROTECTED DynamicTypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{bdb32137-9214-4f98-8796-df49473f1713}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DynamicTypeName := 'FsFB_Object';]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -78,24 +72,18 @@ END_VAR]]></Declaration>
 IF THIS^.Size <> 0 THEN RETURN; END_IF
 
 CASE THIS^.MemoryArea OF
+// Attempt to get size of object.
 	FsT_MemArea.Static:
+	// If object in static memory try and look for it using the TcCOM object server and get it's size.
 		FOR i := SIZEOF(THIS^) TO 10000 DO
 			sTypeName := FsF_GetTypeNameByAddress(THIS, i);
 			IF sTypeName <> '' THEN EXIT; END_IF
 			END_FOR
-		THIS^._TypeName(FsT_Accessor.Set, sTypeName);
 		THIS^._Size(FsT_Accessor.Set, i);
-	FsT_MemArea.Dynamic:
-		THIS^._TypeName(FsT_Accessor.Set,'FsFB_Object');
-		THIS^._Size(FsT_Accessor.Set, SIZEOF(THIS^));
-	FsT_MemArea.CNC:
-		THIS^._TypeName(FsT_Accessor.Set,'<Unsupported>');
-		THIS^._Size(FsT_Accessor.Set, SIZEOF(THIS^));
 ELSE
-	THIS^._TypeName(FsT_Accessor.Set,'<Unknown>');
+// In any other case just return the base object size.
 	THIS^._Size(FsT_Accessor.Set, SIZEOF(THIS^));
-	END_CASE
-]]></ST>
+	END_CASE]]></ST>
       </Implementation>
     </Method>
     <Property Name="InstancePath" Id="{218ed01a-d849-4c65-abf6-b55439d7517f}" FolderPath="Properties\">
@@ -107,7 +95,7 @@ END_VAR]]></Declaration>
         <Implementation>
           <ST><![CDATA[CASE THIS^.MemoryArea OF
 	FsT_MemArea.Static: 
-		InstancePath := FsF_GetVariableNameByAddress(THIS, THIS^.Size);
+		InstancePath := FsF_GetVariablePathByAddress(THIS, THIS^.Size);
 	FsT_MemArea.Dynamic:
 		InstancePath := '<Dynamic>';
 	FsT_MemArea.CNC:
@@ -161,13 +149,20 @@ METHOD ToString : FsT_LStr]]></Declaration>
     </Method>
     <Property Name="TypeName" Id="{798da96d-0670-4365-8189-eab7f1df96d3}" FolderPath="Properties\">
       <Declaration><![CDATA[// A string that represents the type of the object.
-PROPERTY TypeName : FsT_Str]]></Declaration>
+PROPERTY FINAL TypeName : FsT_Str]]></Declaration>
       <Get Name="Get" Id="{aea9ec0c-e0a1-480b-82b8-9eff58306bd6}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
+        <Declaration><![CDATA[]]></Declaration>
         <Implementation>
-          <ST><![CDATA[TypeName:= THIS^._TypeName(FsT_Accessor.Get, '');]]></ST>
+          <ST><![CDATA[CASE THIS^.MemoryArea OF
+	FsT_MemArea.Static: 
+		TypeName := FsF_GetTypeNameByAddress(THIS, THIS^.Size);
+	FsT_MemArea.Dynamic:
+		TypeName := THIS^.DynamicTypeName;
+	FsT_MemArea.CNC:
+		TypeName := '<Unsupported>';
+ELSE
+	TypeName := '<Unknown>';
+	END_CASE]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -182,15 +177,10 @@ END_VAR
       <LineId Id="18" Count="0" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FsFB_Object._TypeName">
-      <LineId Id="5" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
     <LineIds Name="FsFB_Object.Address.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Object.DynamicTypeName.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.FB_init">
@@ -198,29 +188,19 @@ END_VAR
       <LineId Id="115" Count="0" />
       <LineId Id="120" Count="0" />
       <LineId Id="22" Count="0" />
+      <LineId Id="133" Count="0" />
       <LineId Id="24" Count="0" />
+      <LineId Id="132" Count="0" />
       <LineId Id="28" Count="2" />
       <LineId Id="27" Count="0" />
-      <LineId Id="95" Count="0" />
       <LineId Id="116" Count="0" />
-      <LineId Id="106" Count="1" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="111" Count="1" />
-      <LineId Id="119" Count="0" />
       <LineId Id="114" Count="0" />
-      <LineId Id="113" Count="0" />
+      <LineId Id="134" Count="0" />
       <LineId Id="118" Count="0" />
       <LineId Id="25" Count="0" />
-      <LineId Id="110" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.InstancePath.Get">
-      <LineId Id="5" Count="1" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="14" Count="0" />
+      <LineId Id="17" Count="8" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.Is">
@@ -236,7 +216,8 @@ END_VAR
       <LineId Id="3" Count="0" />
     </LineIds>
     <LineIds Name="FsFB_Object.TypeName.Get">
-      <LineId Id="2" Count="0" />
+      <LineId Id="4" Count="8" />
+      <LineId Id="3" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
