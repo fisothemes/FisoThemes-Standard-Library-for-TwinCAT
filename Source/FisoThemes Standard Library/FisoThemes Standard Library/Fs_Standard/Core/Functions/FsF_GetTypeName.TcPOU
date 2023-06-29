@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetTypeName" Id="{272394df-f52a-4096-af79-4769dfbdb581}" SpecialFunc="None">
+    <Declaration><![CDATA[// Returns the datatype of a variable as a string using its pointer and size.
+// Variables allocated in dynamic memory are not supported.
+FUNCTION FsF_GetTypeName : FsT_Str
+VAR_INPUT
+	Variable : ANY;
+END_VAR
+VAR 
+	nTmp : UDINT := SIZEOF(FsF_GetTypeName);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_FsGVL.fbTcComIecApplicationInfo
+	.GetInterface()
+	.GetDatatypeNameByAddress(TO_UDINT(Variable.diSize), Variable.pValue, nTmp, ADR(FsF_GetTypeName));]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetTypeName">
+      <LineId Id="49" Count="1" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

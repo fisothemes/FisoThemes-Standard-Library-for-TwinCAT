@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetVariablePath" Id="{48e3408e-4798-4cb5-abb4-4adc1df265d4}" SpecialFunc="None">
+    <Declaration><![CDATA[// Returns the name of a variable as a string using its pointer and size.
+// Variables allocated in dynamic memory are not supported.
+FUNCTION FsF_GetVariablePath : FsT_Str
+VAR_INPUT
+	Variable : ANY;
+END_VAR
+VAR
+	nTmp : UDINT := SIZEOF(FsF_GetVariablePath);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_FsGVL.fbTcComIecApplicationInfo
+	.GetInterface()
+	.GetSymbolNameByAddress(TO_UDINT(Variable.diSize), Variable.pValue, nTmp, ADR(FsF_GetVariablePath));]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetVariablePath">
+      <LineId Id="7" Count="0" />
+      <LineId Id="28" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
