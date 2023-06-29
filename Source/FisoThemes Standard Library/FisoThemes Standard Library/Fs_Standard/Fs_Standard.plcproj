@@ -28,6 +28,9 @@
     <Compile Include="Core\DataUnitTypes\Alias\FsT_Char.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\DataUnitTypes\Alias\FsT_SStr.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\DataUnitTypes\Alias\FsT_MemArea.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -64,16 +67,25 @@
     <Compile Include="Core\FunctionBlocks\FsFB_Object.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\FunctionBlocks\FsFB_ValueType.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Functions\FsF_GetPlcTaskInformation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Functions\FsF_GetTypeNameByAddress.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Functions\FsF_GetVariableNameByAddress.TcPOU">
+    <Compile Include="Core\Functions\FsF_GetTypeName.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetVariablePathByAddress.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Functions\FsF_GetTypeNameByPath.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetVariablePath.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Interfaces\FsI_Cloneable.TcIO">
@@ -88,11 +100,26 @@
     <Compile Include="Core\Interfaces\FsI_Object.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Interfaces\FsI_ValueType.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Parameters\FSParam_Core.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="Core\_Playground\FsP_CorePlayground.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\DataUnitTypes\Alias\FsT_ErrMsg.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\DataUnitTypes\Alias\FsT_ErrSrc.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\DataUnitTypes\Alias\FsT_ErrCode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\Interfaces\FsI_Error.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -113,7 +140,7 @@
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_Internal\FunctionBlocks\FsFB_TcComInterfaceManager.TcPOU">
+    <Compile Include="_Internal\FunctionBlocks\FsFB_TcComIecApplicationInfo.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_Internal\Globals\_FsGVL.TcGVL">
@@ -124,6 +151,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_TemplateFolder\_Playground\FsP_TempPlayground.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\_Playground\FsP_ErrorHandlingPlayground.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -160,6 +190,18 @@
     <Folder Include="Core\Parameters" />
     <Folder Include="Core\Programs" />
     <Folder Include="Core\_Playground" />
+    <Folder Include="ErrorHandling" />
+    <Folder Include="ErrorHandling\DataUnitTypes" />
+    <Folder Include="ErrorHandling\DataUnitTypes\Alias" />
+    <Folder Include="ErrorHandling\DataUnitTypes\Enums" />
+    <Folder Include="ErrorHandling\DataUnitTypes\Structs" />
+    <Folder Include="ErrorHandling\FunctionBlocks" />
+    <Folder Include="ErrorHandling\Functions" />
+    <Folder Include="ErrorHandling\Globals" />
+    <Folder Include="ErrorHandling\Interfaces" />
+    <Folder Include="ErrorHandling\Parameters" />
+    <Folder Include="ErrorHandling\Programs" />
+    <Folder Include="ErrorHandling\_Playground" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_Standard">

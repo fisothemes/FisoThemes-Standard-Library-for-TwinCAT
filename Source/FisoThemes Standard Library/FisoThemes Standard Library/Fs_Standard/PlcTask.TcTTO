@@ -7,6 +7,12 @@
     <PouCall>
       <Name>_MAIN</Name>
     </PouCall>
+    <PouCall>
+      <Name>FsP_CorePlayground</Name>
+    </PouCall>
+    <PouCall>
+      <Name>FsP_ErrorHandlingPlayground</Name>
+    </PouCall>
     <TaskFBGuid>{6eae2038-9f55-411d-a0a1-f2203a1284a8}</TaskFBGuid>
     <Fb_init>{5f1d758e-d588-4a22-b865-9c7a02a3fc79}</Fb_init>
     <Fb_exit>{72d593bc-21b2-4e88-9a3b-6ab43eeb652e}</Fb_exit>

@@ -5,21 +5,19 @@
 VAR
 	fbObj : FsFB_Object;
 	Sz0,Sz1 : FsT_Size;
-	sName : STRING(255) := FsF_GetTypeNameByAddress(ADR(fbObj), SIZEOF(fbObj));
+	sName : STRING(255);
 	arData : ARRAY[0..3] OF FsT_LStr;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[arData[0] := fbObj.InstancePath;
 arData[1] := fbObj.TypeName;
-arData[2] := FsF_GetVariableNameByAddress(ADR(fbObj), SIZEOF(fbObj));
-Sz0 := fbObj.Size;
-Sz1 := SIZEOF(fbObj);]]></ST>
+arData[2] := FsF_GetVariablePathByAddress(ADR(fbObj), SIZEOF(fbObj));
+Sz0 := fbObj.Size;]]></ST>
     </Implementation>
     <LineIds Name="FsP_CorePlayground">
       <LineId Id="14" Count="1" />
       <LineId Id="25" Count="0" />
       <LineId Id="16" Count="0" />
-      <LineId Id="12" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

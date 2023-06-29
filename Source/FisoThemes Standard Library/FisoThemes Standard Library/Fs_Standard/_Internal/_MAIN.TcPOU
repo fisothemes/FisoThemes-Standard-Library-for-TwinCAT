@@ -6,7 +6,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[FsP_CorePlayground();]]></ST>
+      <ST><![CDATA[]]></ST>
     </Implementation>
     <LineIds Name="_MAIN">
       <LineId Id="2" Count="0" />
