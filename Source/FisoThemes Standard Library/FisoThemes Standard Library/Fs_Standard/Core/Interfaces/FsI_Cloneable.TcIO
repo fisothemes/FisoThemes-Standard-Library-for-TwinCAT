@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <Itf Name="FsI_Cloneable" Id="{f0cc991c-ad6a-471e-878b-5acab858f1f9}">
-    <Declaration><![CDATA[INTERFACE FsI_Cloneable EXTENDS HgI_Unknown
+    <Declaration><![CDATA[// Generic interface for creating clones of objects.
+INTERFACE FsI_Cloneable EXTENDS FsI_Unknown
 ]]></Declaration>
     <Method Name="Clone" Id="{27700283-24dd-4d5e-bd76-b85d215190cc}">
-      <Declaration><![CDATA[METHOD Clone : BOOL
-VAR_INPUT
+      <Declaration><![CDATA[// Returns a clone of the object that exits in dynamic memory.
+// Clone must be freed from dynamic memory manually when done.
+// A clone is an identical object that occupies a new memory space.
+// References from the original object are shared.
+METHOD Clone : FsI_Object
+VAR_OUTPUT
+	e : FsI_Error;
 END_VAR]]></Declaration>
     </Method>
   </Itf>
