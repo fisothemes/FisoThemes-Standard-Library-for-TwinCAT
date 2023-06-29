@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="FsT_ErrCode" Id="{2480f718-c38e-4752-b484-05959eedf60a}">
+    <Declaration><![CDATA[TYPE FsT_ErrCode : LINT; END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

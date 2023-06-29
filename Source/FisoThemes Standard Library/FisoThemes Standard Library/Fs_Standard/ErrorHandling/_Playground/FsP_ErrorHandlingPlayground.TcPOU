@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsP_ErrorHandlingPlayground" Id="{5a0d939f-a70c-4b2c-82d3-074370e7b7e9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM INTERNAL FsP_ErrorHandlingPlayground
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="FsP_ErrorHandlingPlayground">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

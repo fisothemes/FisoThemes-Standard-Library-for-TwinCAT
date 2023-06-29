@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Itf Name="FsI_Error" Id="{8e2b39cc-44a5-4e58-81fd-0af79ce0a762}">
+    <Declaration><![CDATA[// General interface for error classes.
+INTERFACE FsI_Error EXTENDS FsI_Unknown
+]]></Declaration>
+    <Folder Name="Properties" Id="{7c2e6905-3f51-4d36-9212-519664214bc2}" />
+    <Property Name="Code" Id="{46e2eaad-514a-48b2-ba14-98e93fdcaa6e}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Code : FsT_ErrSrc]]></Declaration>
+      <Get Name="Get" Id="{d1db998b-1f76-4d66-b62b-b99c1658358e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Message" Id="{5984187f-15d0-4cc5-8716-8d1d9ccfc646}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Message : FsT_ErrMsg]]></Declaration>
+      <Get Name="Get" Id="{37ebe30e-d19b-4e5c-98da-6ac553ccdea0}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="Source" Id="{d1c29ff8-61f8-4ccc-b32e-07a3e1d39899}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Source : FsT_ErrCode]]></Declaration>
+      <Get Name="Get" Id="{8508277f-4dce-4ad3-9277-d88c2cbbc8a3}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>
