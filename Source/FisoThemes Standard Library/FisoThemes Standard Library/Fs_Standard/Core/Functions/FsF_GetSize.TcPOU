@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetSize" Id="{1c100f78-8ff8-4e04-bdda-082f777a031f}" SpecialFunc="None">
+    <Declaration><![CDATA[// Gets the size of an object in static memory via its interface.
+// Interface must extend FsI_Unknown.
+// NOTE: This is performance intensive. Cyclic use is not recommened.
+FUNCTION FsF_GetSize : FsT_Size
+VAR_INPUT
+	ipInterface : FsI_Unknown;
+END_VAR
+VAR
+	pAddress : FsT_Ptr;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[pAddress := FsF_GetAddress(ipInterface);
+IF pAddress = 0 THEN RETURN; END_IF
+CASE Tc2_System.F_CheckMemoryArea(pAddress, 1) OF
+	FsT_MemArea.Static:
+		FOR FsF_GetSize := SIZEOF(ipInterface) TO FsParam_Core.INFO_SCAN_SIZE DO
+			IF FsF_GetTypeNameByAddress(pAddress, FsF_GetSize) <> '' THEN RETURN; END_IF
+			END_FOR
+		FsF_GetSize := 0;
+	END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetSize">
+      <LineId Id="24" Count="7" />
+      <LineId Id="16" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

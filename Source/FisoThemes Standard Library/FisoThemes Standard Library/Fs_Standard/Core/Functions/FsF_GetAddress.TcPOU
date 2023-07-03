@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_GetAddress" Id="{fb8a59d7-2fb4-4f4a-8680-e992779d3bfe}" SpecialFunc="None">
+    <Declaration><![CDATA[// Gets the address of an object from it's interface.
+// Interface must extend FsI_Unknown.
+FUNCTION FsF_GetAddress : FsT_Ptr
+VAR_INPUT
+	ipInterface : FsI_Unknown;
+END_VAR
+VAR
+	pInterface : POINTER TO FsT_Ptr := ADR(ipInterface);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF ipInterface = 0 THEN RETURN; END_IF
+FsF_GetAddress := pInterface^ - SIZEOF(ipInterface);]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_GetAddress">
+      <LineId Id="12" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
