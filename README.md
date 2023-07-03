@@ -29,61 +29,56 @@ FsFB_Object IMPLEMENTS FsI_Object
     └── MemoryArea : FsT_MemArea
 ```
 
-### Error Interface
+### Error Class
  
 ```
-FsI_Error
+FsFB_Error EXTENDS FsFB_Object IMPLEMENTS FsI_Error
 └── Properties
-    ├── Message : FsT_ErrMsg
-    ├── Source : FsT_ErrSrc
-    └── Code : FsT_ErrCode
+    ├── Code : FsT_ErrCode
+    └── Message : FsT_ErrMsg
 ```
 
 ### Immutable String Example
 **Declarations:** 
-```ST
+```PASCAL
 VAR
     sValue : STRING(255);
     fbImmutStr : FsFB_ImmutableString('I love cats!');
     DogPos : FsT_Pos;
-    ipErr : FsI_Error;
-    ErrorMsg : FsT_ErrMsg;
-    ErrorSrc : FsT_ErrSrc;
+    fbErr : FsFB_Error;
 END_VAR
 ```
 
 **Implementation:**
-```ST
+```PASCAL
 sValue := fbImmutStr
-    .Search('Dogs', 0, Pos => DogPos, e => ipErr)
+    .Search('Dogs', 0, Pos => DogPos, e => fbErr)
     .ToString();
-IF ipErr <> 0 THEN
-    ErrorMsg := ipErr.Message; // OUTPUT: 'Value not found.'
-    ErrorSrc := ipErr.Source; // OUTPUT: 'MAIN.fbImmutStr'
+CASE fbErr.Code OF
+    0: ...
 ELSE
-    ...
-    END_IF
+    // Handle Error.
+    END_CASE
 ```
 
 
 ### TCP Client Example
 **Declarations:** 
-```ST
+```PASCAL
 VAR
     SendBuffer, RecvBuffer : FsT_Str;
     fbTcpClient : FsFB_TcpClient;
-    ipErr : FsI_Error;
-    ErrorCode : FsT_ErrCode;
+    fbErr : FsFB_Error;
 END_VAR
 ```
 
 **Implementation:**
-```ST
+```PASCAL
 IF bConnect THEN
     // The Connect method returns TRUE when done irrespective of error.
-	bConnect := NOT fbTcpClient.Connect('127.0.0.1', 8008, e => ipErr);
-    IF ipErr <> 0 THEN
-        ErrorCode := ipErr.Code;
+	bConnect := NOT fbTcpClient.Connect('127.0.0.1', 8008, e => fbErr);
+    IF fbErr.Code <> 0 THEN
+        // Handle error.
 	END_IF
     END_IF
 	
