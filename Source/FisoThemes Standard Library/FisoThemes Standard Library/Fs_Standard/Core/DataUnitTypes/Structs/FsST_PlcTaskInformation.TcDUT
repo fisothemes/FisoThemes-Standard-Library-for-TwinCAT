@@ -1,9 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <DUT Name="FsST_PlcTaskInformation" Id="{311720c0-a47e-4a31-a1d4-f7cf7324c3a4}">
-    <Declaration><![CDATA[TYPE FsST_PlcTaskInformation EXTENDS PlcTaskSystemInfo :
+    <Declaration><![CDATA[TYPE FsST_PlcTaskInformation :
 STRUCT
-	CycleTicks : LTIME; // Current task cycle time
+	 ObjId                   : OTCID; // Object ID of the task reference, from which the PLC program is called.
+     CycleTime               : LTIME; // Task cycle time.
+     Priority                : UINT; // Task priority.
+     AdsPort                 : UINT; // Task ADS port.
+     CycleCount              : UDINT; // Cycle counter. | NOTE: This refers to the actual system task and not to the task reference of the PLC project.
+     DcTaskTime              : LINT; // Distributed Clock System Time. | NOTE: It remains constant for a task runtime.
+     LastExecTime            : LTIME; // Cycle time required for the last cycle.
+     FirstCycle              : BOOL; // During the first PLC task cycle, this variable has the value TRUE.
+     CycleTimeExceeded       : BOOL; // Indicates whether the set task cycle time was exceeded.
+     InCallAfterOutputUpdate : BOOL; // This TRUE if the origin of the current call is declared with the attribute 'TcCallAfterOutputUpdate'.
+     RTViolation             : BOOL; // This variable has the value TRUE if the real-time limit is exceeded on a mixed core (Windows + real-time on one core).
+     TaskName                : STRING(63); // Name of the task reference object in the PLC project (e.g. 'MyPlcProject_PlcTaskRef')
+	 TaskIndex 				 : BYTE; // Task index of the task.
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
