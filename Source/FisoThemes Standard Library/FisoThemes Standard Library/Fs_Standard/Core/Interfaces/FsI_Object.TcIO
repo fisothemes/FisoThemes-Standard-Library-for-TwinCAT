@@ -5,10 +5,10 @@
 INTERFACE FsI_Object EXTENDS FsI_Unknown]]></Declaration>
     <Folder Name="Methods" Id="{603824c2-a15f-4b68-9f03-78f8bd8cf16c}" />
     <Folder Name="Properties" Id="{6528398b-04f5-484f-a69c-a3efa596900f}" />
-    <Property Name="Address" Id="{4ac6af2f-263b-4789-aa5c-4534d7e3601d}" FolderPath="Properties\">
+    <Property Name="Address" Id="{6095e328-bbcf-494d-9b53-8735206757c8}" FolderPath="Properties\">
       <Declaration><![CDATA[// Pointer to the object in memory.
 PROPERTY Address : FsT_Ptr]]></Declaration>
-      <Get Name="Get" Id="{fb480715-7e3a-4ba1-b3a2-ce287c463598}">
+      <Get Name="Get" Id="{e32e540c-4993-4a8a-ba81-d5b7f91cd914}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>

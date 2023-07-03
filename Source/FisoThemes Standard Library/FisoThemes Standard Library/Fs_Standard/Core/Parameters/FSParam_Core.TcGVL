@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
-  <GVL Name="FSParam_Core" Id="{23f779d3-74b3-4231-a330-7fe9e566b126}" ParameterList="True">
+  <GVL Name="FsParam_Core" Id="{23f779d3-74b3-4231-a330-7fe9e566b126}" ParameterList="True">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
-	nFST_STR_SIZE : UXINT := 80; // Size of general string.
-	nFST_SSTR_SIZE : UXINT := 40; // Size of short string.
-	nFST_LSTR_SIZE : UXINT := 255; // Size of long string.
+	STR_SIZE : FsT_Size := 80; // Size of general string.
+	SSTR_SIZE : FsT_Size := 40; // Size of short string.
+	LSTR_SIZE : FsT_Size := 255; // Size of long string.
+	INFO_SCAN_SIZE : FsT_Size := 15000; // How many bytes to scan when looking for information. e.g. it's FsFB_Object to find the size of a child object in static memory.
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

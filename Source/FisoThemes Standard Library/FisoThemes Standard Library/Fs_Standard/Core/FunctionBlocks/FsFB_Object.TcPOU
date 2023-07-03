@@ -75,7 +75,7 @@ CASE THIS^.MemoryArea OF
 // Attempt to get size of object.
 	FsT_MemArea.Static:
 	// If object in static memory try and look for it using the TcCOM object server and get it's size.
-		FOR i := SIZEOF(THIS^) TO 10000 DO
+		FOR i := SIZEOF(THIS^) TO FsParam_Core.INFO_SCAN_SIZE DO
 			sTypeName := FsF_GetTypeNameByAddress(THIS, i);
 			IF sTypeName <> '' THEN EXIT; END_IF
 			END_FOR

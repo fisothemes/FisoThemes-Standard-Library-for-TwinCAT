@@ -3,6 +3,6 @@
   <DUT Name="FsT_Str" Id="{195d2a88-0bae-4800-a8d8-2e9f97a34e4f}">
     <Declaration><![CDATA[// Standard FS string.
 // Size is a parameter located at FSParam_Core.nFST_STR_SIZE. | DEFAULT: 80
-TYPE FsT_Str : STRING(FSParam_Core.nFST_STR_SIZE); END_TYPE]]></Declaration>
+TYPE FsT_Str : STRING(FSParam_Core.STR_SIZE); END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>
