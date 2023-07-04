@@ -3,21 +3,45 @@
   <POU Name="FsP_CorePlayground" Id="{fe32e6f4-2a42-43f5-bef2-f3cbb688e3ff}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM INTERNAL FsP_CorePlayground
 VAR
+	bStart, bGo: BOOL := TRUE;
 	fbObj : FsFB_Object;
+	rObj: REFERENCE TO FsFB_Object;
+	fbErr : FsFB_Error;
+	fbErr2 : FsFB_Error;
+	arpData : ARRAY[0..3] OF FsT_Ptr;
+	fbErrDef : FsFB_ErrorDefinitionOnInit(11, 'Dogs');
 	Sz0,Sz1 : FsT_Size;
 	sName : STRING(255);
 	arData : ARRAY[0..3] OF FsT_LStr;
+	
+	ii : ITcUnknown;
+	AppInfo : FsT_PlcAppInfo;
+	TaskInfo : FsT_PlcTaskInfo;
+	pCC : ULINT;
+	hRes : HRESULT; 
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[arData[0] := fbObj.InstancePath;
 arData[1] := fbObj.TypeName;
 arData[2] := FsF_GetVariablePathByAddress(ADR(fbObj), SIZEOF(fbObj));
-Sz0 := fbObj.Size;]]></ST>
+Sz0 := fbObj.Size;
+rObj REF= fbErr;
+FsF_Cast(rObj, fbErr2);
+arpData[0] := ADR(fbErr);
+arpData[1] := ADR(fbErr2);
+AppInfo := TwinCAT_SystemInfoVarList._AppInfo;
+TaskInfo :=  FsF_GetPlcTaskInformation();]]></ST>
     </Implementation>
     <LineIds Name="FsP_CorePlayground">
       <LineId Id="14" Count="1" />
       <LineId Id="25" Count="0" />
       <LineId Id="16" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="58" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

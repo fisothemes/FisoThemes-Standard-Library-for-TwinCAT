@@ -70,6 +70,15 @@
     <Compile Include="Core\FunctionBlocks\FsFB_ValueType.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Functions\FsF_Cast.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetAddress.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Functions\FsF_GetSize.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Functions\FsF_GetPlcTaskInformation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -103,7 +112,7 @@
     <Compile Include="Core\Interfaces\FsI_ValueType.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Parameters\FSParam_Core.TcGVL">
+    <Compile Include="Core\Parameters\FsParam_Core.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -119,8 +128,35 @@
     <Compile Include="ErrorHandling\DataUnitTypes\Alias\FsT_ErrCode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ErrorHandling\FunctionBlocks\FsFB_Error.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\FunctionBlocks\FsFB_ErrorDefinition.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\FunctionBlocks\FsFB_ErrorDefinitionOnInit.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\Functions\FsF_Error.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\Functions\FsF_ErrorPath.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\Globals\FsGVL_CodesysCmpErrors.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="ErrorHandling\Globals\FsGVL_ErrorCodes.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="ErrorHandling\Interfaces\FsI_Error.TcIO">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\Parameters\FsParam_ErrorHandling.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
