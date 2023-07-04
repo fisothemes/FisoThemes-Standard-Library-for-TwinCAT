@@ -9,6 +9,9 @@ INTERFACE FsI_Equatable EXTENDS FsI_Unknown
 METHOD Equals : BOOL
 VAR_INPUT
 	ipObject : FsI_Object;
+END_VAR
+VAR_OUTPUT
+	e : FsFB_Error;
 END_VAR]]></Declaration>
     </Method>
   </Itf>

@@ -11,7 +11,7 @@ INTERFACE FsI_Cloneable EXTENDS FsI_Unknown
 // References from the original object are shared.
 METHOD Clone : FsI_Object
 VAR_OUTPUT
-	e : FsI_Error;
+	e : FsFB_Error;
 END_VAR]]></Declaration>
     </Method>
   </Itf>
