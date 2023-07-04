@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsFB_Error" Id="{c4eb7949-7443-499c-949e-98da50b3b761}" SpecialFunc="None">
+    <Declaration><![CDATA[// Base class for all error classes.
+{attribute 'enable_dynamic_creation'}
+{attribute 'reflection'}
+{attribute 'no_explicit_call' := 'direct call for this function block is not allowed'}
+FUNCTION_BLOCK FsFB_Error EXTENDS FsFB_ValueType IMPLEMENTS FsI_Error
+VAR
+	_Code : FsT_ErrCode := FsGVL_ErrorCodes.NO_ERROR;
+	_Message : FsT_ErrMsg := 'No Error.';
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Properties" Id="{a7b71548-d192-42d0-8705-19b65dcc0eef}" />
+    <Property Name="Code" Id="{ce1ad6ad-2d4a-457e-b32d-a7a05170f8d1}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Code : FsT_ErrCode]]></Declaration>
+      <Get Name="Get" Id="{ae7a7f3d-3705-4e3b-99fa-7a34c4629ddc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Code := THIS^._Code;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="DynamicTypeName" Id="{539e9e46-bc25-4de6-be76-e3d8dfd2e7bb}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY PROTECTED DynamicTypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{5208f2fe-8673-4479-bd9b-5fbfa36beb71}">
+        <Declaration><![CDATA[VAR
+	fbVar : FsFB_Error;
+	VarInfo : FsT_VarInfo := __VARINFO(fbVar); 
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DynamicTypeName := VarInfo.TypeName;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Message" Id="{0275838e-9083-4da7-a021-40525c78aa89}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Message : FsT_ErrSrc
+]]></Declaration>
+      <Get Name="Get" Id="{8abb904a-cc63-4170-a83d-153219f77c65}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Message := THIS^._Message;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FsFB_Error">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Error.Code.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Error.DynamicTypeName.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_Error.Message.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

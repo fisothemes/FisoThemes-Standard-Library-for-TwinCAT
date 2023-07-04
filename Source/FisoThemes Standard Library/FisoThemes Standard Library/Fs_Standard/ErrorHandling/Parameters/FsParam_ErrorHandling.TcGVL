@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <GVL Name="FsParam_ErrorHandling" Id="{83edb938-c2e6-457f-bae2-abdc31aa7bf8}" ParameterList="True">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	ERROR_MSG_SIZE : FsT_Size := 255; // String length of error message.
+	ERROR_SRC_SIZE : FsT_Size := 255; // String length of error source.
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <GVL Name="FsGVL_ErrorCodes" Id="{68dcf4b0-0fe2-4d12-b510-9a93905926f6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	NO_ERROR 			: FsT_ErrCode := 16#0; // No error.
+	GENERAL 			: FsT_ErrCode := 16#1; // General error.
+	INVALID_PARAMTERS 	: FsT_ErrCode := 16#2; // The paramters for this operation are invalid.
+	TIMEDOUT 			: FsT_ErrCode := 16#3; // The operation took too long to complete.
+	TYPE_MISMATCH 		: FsT_ErrCode := 16#4; // The wrong type is assigned to the variable or used in the expression.
+	SIZE_MISMATCH 		: FsT_ErrCode := 16#5; // The size of two or more objects or values are not the same.
+	INVALID_INTERFACE 	: FsT_ErrCode := 16#6; // The interface is null or invalid.
+	MISSING_INTERFACE 	: FsT_ErrCode := 16#7; // The object does not implement the required interface.
+	OUT_OF_BOUNDS 		: FsT_ErrCode := 16#8; // Attempted to access an element that is outside outside the valid range.
+	OUT_OF_LIMITS 		: FsT_ErrCode := 16#9; // A value is outside of the valid range
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

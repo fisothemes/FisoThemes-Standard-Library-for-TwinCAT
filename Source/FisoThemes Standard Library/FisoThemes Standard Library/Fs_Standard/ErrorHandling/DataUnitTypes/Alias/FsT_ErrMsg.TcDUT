@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <DUT Name="FsT_ErrMsg" Id="{6c14e48e-c2e0-4815-af44-424aae3b6f77}">
-    <Declaration><![CDATA[TYPE FsT_ErrMsg : FsT_LStr; END_TYPE
+    <Declaration><![CDATA[TYPE FsT_ErrMsg : STRING(FsParam_ErrorHandling.ERROR_MSG_SIZE); END_TYPE
 ]]></Declaration>
   </DUT>
 </TcPlcObject>
