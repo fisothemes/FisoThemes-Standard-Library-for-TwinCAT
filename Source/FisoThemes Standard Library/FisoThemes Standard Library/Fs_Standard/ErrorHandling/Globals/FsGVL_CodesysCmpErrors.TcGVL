@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <GVL Name="FsGVL_CodesysCmpErrors" Id="{5622a579-1382-4d7c-8100-f1ebd70d3cce}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+(* Error code are @ CmpErrors.Errors.<variable> from the CmpErrors2 Interfaces library.*)
+VAR_GLOBAL CONSTANT
+	ERR_OK 						: FsT_ErrCode := 16#0; 		//	Ok
+	ERR_FAILED 					: FsT_ErrCode := 16#1; 		//	General error - To be used only for internal errors
+	ERR_PARAMETER 				: FsT_ErrCode := 16#2; 		//	Invalid parameter for this operation
+	ERR_NOTINITIALIZED 			: FsT_ErrCode := 16#3; 		//	Function cannot be executed, since component has not been initialized yet. It may work later, though
+	ERR_VERSION 				: FsT_ErrCode := 16#4; 		//	Version conflict
+	ERR_TIMEOUT 				: FsT_ErrCode := 16#5; 		//	Operation timed out
+	ERR_NOBUFFER 				: FsT_ErrCode := 16#6; 		//	Insufficient memory to carry out the request
+	ERR_PENDING 				: FsT_ErrCode := 16#A; 		//	For async-calls: call not complete, yet
+	ERR_NUMPENDING 				: FsT_ErrCode := 16#B; 		//  Too many pending calls. Try later
+	ERR_NOTIMPLEMENTED 			: FsT_ErrCode := 16#C; 		//  The function is not implemented
+	ERR_INVALIDID 				: FsT_ErrCode := 16#D; 		//  No object with the provided id found
+	ERR_OVERFLOW 				: FsT_ErrCode := 16#E; 		//	Integer overflow
+	ERR_BUFFERSIZE 				: FsT_ErrCode := 16#F; 		//	The size of a buffer is too small OR invalid
+	ERR_NO_OBJECT 				: FsT_ErrCode := 16#10;		//	No object with THIS specified name available
+	ERR_NOMEMORY 				: FsT_ErrCode := 16#11;		//  No heap memory available
+	ERR_DUPLICATE 				: FsT_ErrCode := 16#12A;  	//  An object with the same name is still available
+	ERR_MEMORY_OVERWRITE 		: FsT_ErrCode := 16#13;  	//  Heap memory was written out of bounds! Memory overwrite error
+	ERR_INVALID_HANDLE 			: FsT_ErrCode := 16#14;  	//  Invalid handle to an object
+	ERR_END_OF_0BJECT 			: FsT_ErrCode := 16#15;  	//  End OF object reached
+	ERR_NO_CHANGE 				: FsT_ErrCode := 16#16;  	//  No changes done
+	ERR_INVALID_INTERFACE 		: FsT_ErrCode := 16#17;  	//  Invalid OR unknown interface
+	ERR_NOT_SUPPORTED 			: FsT_ErrCode := 16#18;  	//  Functionality not supported
+	ERR_NO_ACCESS_RIGHTS 		: FsT_ErrCode := 16#19;  	//  No access rights for this operation
+	ERR_OUT_OF_LIMITS 			: FsT_ErrCode := 16#1A;  	//  Specified limits of a resource exceeded
+	ERR_ENTRIES_REMAINING 		: FsT_ErrCode := 16#18;  	//  Remaining entries that could not be transmitted because of buffer limitation
+	ERR_INVALID_SESSION_ID 		: FsT_ErrCode := 16#1C;  	//  Invalid online sessionid
+	ERR_EXCEPTION 				: FsT_ErrCode := 16#1D;  	//  Exception occurred
+	ERR_SIGNATURE_MISMATCH 		: FsT_ErrCode := 16#1E;		//	Signature mismatch of an api function
+	ERR_VERSION_MISMATCH 		: FsT_ErrCode := 16#1F;		//	Version mismatch
+	ERR_TYPE_MISMATCH 			: FsT_ErrCode := 16#20;		//	Type mismatch
+	ERR_ID_MISMATCH 			: FsT_ErrCode := 16#21;		//	ID mismatch
+	ERR_NO_CONSISTENCY 			: FsT_ErrCode := 16#22;		//	Consistency error
+	ERR_NO_COMM_CYCLE 			: FsT_ErrCode := 16#23;		//	No COMM_CYCLE needed
+	ERR_DONT_SUSPEND_TASK 		: FsT_ErrCode := 16#24;		//	Do not suspend task after an exception
+	ERR_MEMORY_LOCK_FAILED 		: FsT_ErrCode := 16#25;		//	Memory cannot be locked in this operation
+	ERR_LICENSE_MISSING 		: FsT_ErrCode := 16#26;		//	License missing for the runtime
+	ERR_OPERATION_DENIED 		: FsT_ErrCode := 16#27;		//	Operation denied 
+	ERR_DEVICE 					: FsT_ErrCode := 16#28;		//	Device error
+	ERR_DISK_FULL 				: FsT_ErrCode := 16#29;		//	Disk full
+	ERR_CRC_FAILED 				: FsT_ErrCode := 16#30;		//	Internal use in runtime
+	ERR_MEDIA_ERASE 			: FsT_ErrCode := 16#31;		//	Internal use in runtime
+	ERR_FILE_ERROR 				: FsT_ErrCode := 16#32;		//	File error. e.g. cannot open a file for writing because it could be write protected
+	ERR_NO_RETAIN_MEMORY 		: FsT_ErrCode := 16#33;		//	No retain memory available
+	ERR_OUT_OF_LIMITS_MIN 		: FsT_ErrCode := 16#34;		//	Specified minimum-limit of a resource exceeded
+	ERR_OUT_OF_LIMITS_MAX 		: FsT_ErrCode := 16#35;		//	Specified maximum-limit of a resource exceeded
+	ERR_SIZE_MISMATCH 			: FsT_ErrCode := 16#36;		//	Size mismatch
+	ERR_CALL_AGAIN 				: FsT_ErrCode := 16#37;		//	Operation is not yet finished, call function again to proceed
+	ERR_NOTHING_TO_DO 			: FsT_ErrCode := 16#38;		//	Operation has nothing to do. No execution.
+	ERR_SECURITY_CHECKS_FAILED 	: FsT_ErrCode := 16#39;		//	Some security checks have failed. /* This is a generic error code to report this error over public channels. In this case the error code doesn’t provide a detailed cause for the error. */
+	ERR_INVALID_SEQUENCE 		: FsT_ErrCode := 16#3A;		//	 
+	ERR_INVALID_REFERENCE 		: FsT_ErrCode := 16#3B;		//	Dereferencing an IEC reference in IecVarAccess failed due TO invalid destination address, e. G. NULL.
+	ERR_CONVERSION_INCOMPLETE 	: FsT_ErrCode := 16#3C;		//	Conversion of string encodings was not lossless.
+	ERR_SOCK_NOTINITIALIZED 	: FsT_ErrCode := 16#201;   	//  Socket errors (range: 0x0200 - 0X02FF)
+	ERR_SOCK_NOTSOCKET 			: FsT_ErrCode := 16#202;   	//  The provided socket handle is invalid
+	ERR_SOCK_AFUNSUPPORTED 		: FsT_ErrCode := 16#203;   	//  The address family is not supported
+	ERR_SOCK_PROTOUNSUPPORTED  	: FsT_ErrCode := 16#204;   	//  Protocol is not supported */
+	ERR_SOCK_NOBUFFER 			: FsT_ErrCode := 16#205;   	//  Not enough buffer to handle the request */
+	ERR_SOCK_WOULDBLOCK 		: FsT_ErrCode := 167206;   	//  Socket is in nonblocking mode but THIS call would block =/
+	ERR_SOCK_ADDRINUSE 			: FsT_ErrCode := 16#207;   	//  The provided address is already in use */
+	ERR_SOCK_ADDRNOTAVAILABLE  	: FsT_ErrCode := 16#208;   	//  The provided address is not available on THIS computer */
+	ERR_SOCK_CONNREFUSED 		: FsT_ErrCode := 16#209;   	//  Connection has been refused by the remote host */
+	ERR_SOCK_TIMEDOUT 			: FsT_ErrCode := 16#20A;   	//  Operation timed out */
+	ERR_SOCK_HOSTNOTFOUND 		: FsT_ErrCode := 16#208;   	//  The host has NOT been found */
+	ERR_SOCK_HOSTUNREACHABLE  	: FsT_ErrCode := 16#20C;   	//  Host is unreachable */
+	ERR_SOCK_1SCONNECTED 		: FsT_ErrCode := 16#20D;   	//  Socket is already connected =/
+	ERR_SOCK_NOTCONNECTED 		: FsT_ErrCode := 16#20E;   	//  The socket is not connected */
+	ERR_SOCK_SHUTDOWN 			: FsT_ErrCode := 16#20F;   	//  Shutdown has been called on the socket =/
+	ERR_SOCK_MSGSIZE 			: FsT_ErrCode := 16#210;   	//  FOR sockets of type DGRAM. The package to send exceeds the maximum package size =/
+	ERR_SOCK_CLOSED 			: FsT_ErrCode := 167211;   	//  Socket has been gracefully closed. No more send/receives allowed =/
+	ERR_L7_TAG_MISSING 			: FsT_ErrCode := 16#300;	//  Tag missing in online communication buffer
+	ERR_L7_UNKNOWNCMDGROUP 		: FsT_ErrCode := 16#301;	//  Unknown command group
+	ERR_L7_UNKNOWNCMD 			: FsT_ErrCode := 16#302;	//  Unknown command (within a valid command group)
+	ERR_L7_INCOMPLETE 			: FsT_ErrCode := 16#303;	//  Level 7 service incomplete
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
