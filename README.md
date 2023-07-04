@@ -76,23 +76,23 @@ END_VAR
 ```PASCAL
 IF bConnect THEN
     // The Connect method returns TRUE when done irrespective of error.
-	bConnect := NOT fbTcpClient.Connect('127.0.0.1', 8008, e => fbErr);
+    bConnect := NOT fbTcpClient.Connect('127.0.0.1', 8008, e => fbErr);
     IF fbErr.Code <> 0 THEN
         // Handle error.
 	END_IF
     END_IF
 	
 IF bDisconnect THEN
-	bDisconnect := NOT fbTcpClient.Disconnect(e => ipErr);
-	END_IF
+    bDisconnect := NOT fbTcpClient.Disconnect(e => ipErr);
+    END_IF
 	
 IF bSend THEN
-	bSend := NOT fbTcpClient.Send(SendBuffer, e => ipErr);
-	END_IF
+    bSend := NOT fbTcpClient.Send(SendBuffer, e => ipErr);
+    END_IF
 
 IF bReceive THEN
-	bReceive := NOT fbTcpClient.Receive(RecvBuffer, nBytes => nRBytes, e => ipErr);
-	END_IF
+    bReceive := NOT fbTcpClient.Receive(RecvBuffer, nBytes => nRBytes, e => ipErr);
+    END_IF
 ```
 ---
 ## License
