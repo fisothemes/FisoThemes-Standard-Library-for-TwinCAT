@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsFB_ErrorDefinition" Id="{2e34dc7b-c479-4572-b7c4-2d509ca0d2fa}" SpecialFunc="None">
+    <Declaration><![CDATA[// Function block for creating custom errors.
+{attribute 'enable_dynamic_creation'}
+{attribute 'reflection'}
+{attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
+FUNCTION_BLOCK FINAL FsFB_ErrorDefinition EXTENDS FsFB_Error
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Properties" Id="{b0caec45-c7ea-4b26-b385-9263908a2397}" />
+    <Property Name="Code" Id="{ea2cf2a8-f62d-4b13-a982-1df0ca0b8500}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Code : FsT_ErrCode]]></Declaration>
+      <Set Name="Set" Id="{11edbd4e-def0-4198-87f2-c70903214c61}">
+        <Declaration><![CDATA[VAR
+END_VAR]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[THIS^._Code := Code;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="DynamicTypeName" Id="{b277e546-6883-4ab0-8e7b-37beec70524f}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY PROTECTED DynamicTypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{1c94e104-78d3-404c-9dc0-38e7ba841180}">
+        <Declaration><![CDATA[VAR
+	fbVar : FsFB_ErrorDefinition;
+	VarInfo : FsT_VarInfo := __VARINFO(fbVar); 
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DynamicTypeName := VarInfo.TypeName;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Message" Id="{97cc91a0-f032-4444-83bc-ce65a659717b}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Message : FsT_ErrSrc
+]]></Declaration>
+      <Set Name="Set" Id="{4ffc18b8-0c38-41a6-9f1a-2f6a818b00ea}">
+        <Declaration><![CDATA[VAR
+END_VAR]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[THIS^._Message := Message;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FsFB_ErrorDefinition">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_ErrorDefinition.Code.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_ErrorDefinition.DynamicTypeName.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_ErrorDefinition.Message.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

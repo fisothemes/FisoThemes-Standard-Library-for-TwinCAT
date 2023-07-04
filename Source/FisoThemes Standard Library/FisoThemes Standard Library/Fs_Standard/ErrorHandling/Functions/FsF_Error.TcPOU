@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_Error" Id="{4f691800-b13c-48a2-aabc-a2a5d345197f}" SpecialFunc="None">
+    <Declaration><![CDATA[// Takes two input parameters, Code and Message, and returns an FsFB_Error object.
+FUNCTION FsF_Error : REFERENCE TO FsFB_Error
+VAR_INPUT
+	Code : FsT_ErrCode;
+	Message : FsT_ErrMsg;
+END_VAR
+VAR_STAT
+	fbError : FsFB_ErrorDefinition;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE Code OF
+	FsGVL_ErrorCodes.NO_ERROR: 
+		fbError.Code := FsGVL_ErrorCodes.NO_ERROR;
+		fbError.Message := 'No Error.';
+ELSE
+	fbError.Code :=	Code;
+	fbError.Message := Message;
+	END_CASE
+FsF_Error REF= fbError;]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_Error">
+      <LineId Id="11" Count="1" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

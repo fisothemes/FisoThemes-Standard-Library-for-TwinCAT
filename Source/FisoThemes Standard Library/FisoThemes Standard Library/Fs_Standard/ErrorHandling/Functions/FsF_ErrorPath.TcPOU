@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsF_ErrorPath" Id="{b2e0e0e1-4d24-464c-968d-127f9c7a6c34}" SpecialFunc="None">
+    <Declaration><![CDATA[// Returns an FsFB_Error object who's message includes the instance path of the object.
+FUNCTION FsF_ErrorPath : REFERENCE TO FsFB_Error
+VAR_INPUT
+	Code : FsT_ErrCode;
+	Message : FsT_ErrMsg;
+	ipObject : FsI_Object;
+END_VAR
+VAR_STAT
+	fbError : FsFB_ErrorDefinition;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF ipObject = 0 THEN FsF_ErrorPath REF= FsF_Error(Code, Message); RETURN; END_IF
+CASE Code OF
+	FsGVL_ErrorCodes.NO_ERROR: 
+		fbError.Code := FsGVL_ErrorCodes.NO_ERROR;
+		fbError.Message := 'No Error.';
+ELSE
+	fbError.Code :=	Code;
+	fbError.Message := Message;
+	END_CASE
+fbError.Message := CONCAT(fbError.Message, CONCAT(' | Path: ',ipObject.InstancePath));
+FsF_ErrorPath REF= fbError;]]></ST>
+    </Implementation>
+    <LineIds Name="FsF_ErrorPath">
+      <LineId Id="23" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -3,13 +3,59 @@
   <POU Name="FsP_ErrorHandlingPlayground" Id="{5a0d939f-a70c-4b2c-82d3-074370e7b7e9}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM INTERNAL FsP_ErrorHandlingPlayground
 VAR
+	bStart, bDestroy : BOOL;
+	pObj, pObj2 : POINTER TO FsFB_ErrorDefinition;
+	fbNoError : FsFB_Error;
+	fbErrDef : FsFB_ErrorDefinitionOnInit(11, 'Dogs');
+	MemArea : FsT_MemArea;
+	ipUnk : FsI_Unknown;
+	ipObj : FsI_Object;
+	pItfs : POINTER TO ARRAY[0..6] OF FsT_Ptr;
+	nData, nData2 : FsT_Size;
+	sdata : FsT_LStr;
+	TaskInfo : FsT_PlcTaskInfo;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[fbNoError := fbErrDef;
+sData := fbNoError.Message;
+fbNoError := FsF_ErrorPath(11,'Cats', ipObj);
+sdata := FsF_Error(11,'Cats').Message;
+ipUnk := fbNoError;
+ipObj := fbNoError;
+pItfs := ADR(ipUnk);
+pObj2 := ADR(fbNoError);
+nData := SIZEOF(fbNoError);
+nData2 := FsF_GetSize(ipObj);
+TaskInfo :=  FsF_GetPlcTaskInformation();
+IF bStart THEN 
+	bStart := FALSE;
+	pObj := __NEW(FsFB_ErrorDefinition);
+	sData := pObj^.TypeName;
+	END_IF
+IF bDestroy THEN
+	bDestroy := FALSE; 
+	__DELETE(pObj);
+	END_IF]]></ST>
     </Implementation>
     <LineIds Name="FsP_ErrorHandlingPlayground">
-      <LineId Id="5" Count="0" />
+      <LineId Id="69" Count="2" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="49" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

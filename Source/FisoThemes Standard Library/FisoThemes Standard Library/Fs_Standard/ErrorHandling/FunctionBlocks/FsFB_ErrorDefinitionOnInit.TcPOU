@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="FsFB_ErrorDefinitionOnInit" Id="{7a4d6c14-d0b1-4b9f-8a5f-f9b597550ea1}" SpecialFunc="None">
+    <Declaration><![CDATA[// Function block for creating custom errors on initialisation.
+{attribute 'enable_dynamic_creation'}
+{attribute 'reflection'}
+{attribute 'no_explicit_call' := 'direct call for this function block is not allowed'} 
+FUNCTION_BLOCK FINAL FsFB_ErrorDefinitionOnInit EXTENDS FsFB_Error
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Properties" Id="{0745d678-e58c-4d87-9b35-3a3be6d15317}" />
+    <Property Name="DynamicTypeName" Id="{49e35c6c-8686-4f70-9df3-303f03811df7}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY PROTECTED DynamicTypeName : FsT_Str]]></Declaration>
+      <Get Name="Get" Id="{2da7b148-0a1c-4656-a74d-b1a82997246c}">
+        <Declaration><![CDATA[VAR
+	fbVar : FsFB_ErrorDefinitionOnInit(0,'');
+	VarInfo : FsT_VarInfo := __VARINFO(fbVar); 
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DynamicTypeName := VarInfo.TypeName;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{2e983528-66fe-4d95-98c3-665b2c6731f9}">
+      <Declaration><![CDATA[{attribute 'hide'}
+METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	Code : FsT_ErrCode;
+	Message : FsT_ErrMsg;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._Code := Code;
+THIS^._Message := Message;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FsFB_ErrorDefinitionOnInit">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_ErrorDefinitionOnInit.DynamicTypeName.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FsFB_ErrorDefinitionOnInit.FB_init">
+      <LineId Id="7" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
